@@ -15,9 +15,17 @@ namespace news_blog.Model
 
         // ----- Tags CRUD -----
 
+        public static List<Tag> GetTags()
+        {
+            using (var db = new ApplicationContext())
+            {
+                return db.Tags.ToList();
+            }
+        }
+
         public static string CreateTag(string? Tag)
         {
-            string result = "Тег уже существует";
+            string result = "Не удалось создать новый тег";
             using (var db = new ApplicationContext())
             {
                 bool isTagExist = db.Tags.Any(tag => tag.Title == Tag);
@@ -34,7 +42,7 @@ namespace news_blog.Model
 
         public static string UpdateTag(int TagId, string? TagTitle)
         {
-            string result = "Тег не обновлен";
+            string result = "Не удалось обновить тег";
             using (var db = new ApplicationContext())
             {
                 Tag tag = db.Tags.SingleOrDefault(tag => tag.Id == TagId)!;
@@ -56,7 +64,7 @@ namespace news_blog.Model
 
         public static string DeleteTag(int TagId)
         {
-            string result = "Тег не существует";
+            string result = "Не удалось удалить тег";
             using (var db = new ApplicationContext())
             {
                 Tag tag = db.Tags.SingleOrDefault(tag => tag.Id == TagId)!;
@@ -72,9 +80,17 @@ namespace news_blog.Model
 
         // ----- Categories CRUD -----
 
+        public static List<Category> GetCategories()
+        {
+            using (var db = new ApplicationContext())
+            {
+                return db.Categories.ToList();
+            }
+        }
+
         public static string CreateCategory(string? Category, int ParentCategoryId)
         {
-            string result = "Категория уже существует";
+            string result = "Не удалось создать новую категорию";
             using (var db = new ApplicationContext())
             {
                 bool isCategoryExists = db.Categories.Any(category => category.Title == Category);
@@ -91,7 +107,7 @@ namespace news_blog.Model
 
         public static string UpdateCategory(int CategoryId, string? CategoryTitle, int ParentCategoryId)
         {
-            string result = "Категория не обновлена";
+            string result = "Не удалось обновить категорию";
             using (var db = new ApplicationContext())
             {
                 Category category = db.Categories.SingleOrDefault(category => category.Id == CategoryId)!;
@@ -114,7 +130,7 @@ namespace news_blog.Model
 
         public static string DeleteCategory(int CategoryId)
         {
-            string result = "Категория не существует";
+            string result = "Не удалось удалить категорию";
             using (var db = new ApplicationContext())
             {
                 Category category = db.Categories.SingleOrDefault(category => category.Id == CategoryId)!;
@@ -130,9 +146,17 @@ namespace news_blog.Model
 
         // ----- Users CRUD -----
 
+        public static List<User> GetUsers()
+        {
+            using (var db = new ApplicationContext())
+            {
+                return db.Users.ToList();
+            }
+        }
+
         public static string CreateUser(string? Username, string? Password, bool IsAdmin)
         {
-            string result = "Не удалось создать пользователя";
+            string result = "Не удалось создать нового пользователя";
             using (var db = new ApplicationContext())
             {
                 bool isUserExists = db.Users.Any(user => user.Username == Username);
@@ -173,7 +197,7 @@ namespace news_blog.Model
 
         public static string DeleteUser(int UserId)
         {
-            string result = "Пользователя не существует";
+            string result = "Не удалось удалить пользователя";
             using (var db = new ApplicationContext())
             {
                 User user = db.Users.SingleOrDefault(user => user.Id == UserId)!;
@@ -189,9 +213,17 @@ namespace news_blog.Model
 
         // ----- Comments CRUD -----
 
+        public static List<Comment> GetComments()
+        {
+            using (var db = new ApplicationContext())
+            {
+                return db.Comments.ToList();
+            }
+        }
+
         public static string CreateComment(int UserId, int ArticleId, string? Text)
         {
-            string result = "Комментарий не добавлен";
+            string result = "Не удалось создать новый комментарий";
             using (var db = new ApplicationContext())
             {
                 Comment comment = new() { UserId = UserId, ArticleId = ArticleId, Text = Text };
@@ -204,7 +236,7 @@ namespace news_blog.Model
 
         public static string UpdateComment(int CommentId, int UserId, int ArticleId, string? Text)
         {
-            string result = "Комментарий не обновлён";
+            string result = "Не удалось обновить комментарий";
             using (var db = new ApplicationContext())
             {
                 Comment comment = db.Comments.SingleOrDefault(comment => comment.Id == CommentId)!;
@@ -222,7 +254,7 @@ namespace news_blog.Model
 
         public static string DeleteComment(int CommentId)
         {
-            string result = "Комментарий не удалён";
+            string result = "Не удалось удалить комментарий";
             using (var db = new ApplicationContext())
             {
                 Comment comment = db.Comments.SingleOrDefault(comment => comment.Id == CommentId)!;
@@ -237,6 +269,14 @@ namespace news_blog.Model
         }
 
         // ----- ArticleTags CRUD -----
+
+        public static List<ArticleTag> GetArticleTags()
+        {
+            using (var db = new ApplicationContext())
+            {
+                return db.ArticleTags.ToList();
+            }
+        }
 
         public static string CreateArticleTag(int ArticleId, int TagId)
         {
@@ -286,10 +326,18 @@ namespace news_blog.Model
 
         // ----- Articles CRUD -----
 
+        public static List<Article> GetArticles()
+        {
+            using (var db = new ApplicationContext())
+            {
+                return db.Articles.ToList();
+            }
+        }
+
         public static string CreateArticle(string? Title, string? ShortText, string? Text, int AuthorId, int CategoryId)
         {
-            string result = "Не удалось создать статью";
-            using (ApplicationContext db = new ApplicationContext())
+            string result = "Не удалось создать новую статью";
+            using (var db = new ApplicationContext())
             {
                 bool isArticleExists = db.Articles.Any(article => article.Title!.ToLower() == Title!.ToLower());
                 if (!isArticleExists)
@@ -325,7 +373,7 @@ namespace news_blog.Model
         )
         {
             string result = "Не удалось обновить статью";
-            using (ApplicationContext db = new ApplicationContext())
+            using (var db = new ApplicationContext())
             {
                 Article article = db.Articles.SingleOrDefault(article => article.Id == ArticleId)!;
                 Article isArticleExists = db.Articles.SingleOrDefault(article => article.Title!.ToLower() == Title!.ToLower())!;
@@ -353,7 +401,7 @@ namespace news_blog.Model
         public static string DeleteArticle(int ArticleId)
         {
             string result = "Не удалось удалить статью";
-            using (ApplicationContext db = new ApplicationContext())
+            using (var db = new ApplicationContext())
             {
                 Article article = db.Articles.SingleOrDefault(article => article.Id == ArticleId)!;
                 if (article != null)
