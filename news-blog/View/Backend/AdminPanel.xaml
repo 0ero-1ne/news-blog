@@ -36,7 +36,8 @@
                         FontSize="14"
                         Grid.Row="0"
                         Padding="10"
-                        VerticalAlignment="Top">
+                        VerticalAlignment="Top"
+                        ItemsSource="{Binding Articles}">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn
@@ -73,7 +74,8 @@
                         Grid.Row="1"
                         Style="{DynamicResource NewItemBorder}">
                         <Button
-                            Style="{DynamicResource NewItemButton}"/>
+                            Style="{DynamicResource NewItemButton}"
+                            Command="{Binding OpenCreateArticleWindow}"/>
                     </Border>
                 </Grid>
             </TabItem>
@@ -95,7 +97,8 @@
                         Background="White"
                         FontSize="14"
                         Grid.Row="0"
-                        VerticalAlignment="Top">
+                        VerticalAlignment="Top"
+                        ItemsSource="{Binding Categories}">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn
@@ -111,7 +114,8 @@
                         Grid.Row="1"
                         Style="{DynamicResource NewItemBorder}">
                         <Button
-                            Style="{DynamicResource NewItemButton}"/>
+                            Style="{DynamicResource NewItemButton}"
+                            Command="{Binding OpenCreateCategoryWindow}"/>
                     </Border>
                 </Grid>
             </TabItem>
@@ -133,7 +137,8 @@
                         Background="White"
                         FontSize="14"
                         Grid.Row="0"
-                        VerticalAlignment="Top">
+                        VerticalAlignment="Top"
+                        ItemsSource="{Binding Tags}">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn
@@ -149,7 +154,8 @@
                         Grid.Row="1"
                         Style="{DynamicResource NewItemBorder}">
                         <Button
-                            Style="{DynamicResource NewItemButton}"/>
+                            Style="{DynamicResource NewItemButton}"
+                            Command="{Binding OpenCreateTagWindow}"/>
                     </Border>
                 </Grid>
             </TabItem>
@@ -171,7 +177,8 @@
                         Background="White"
                         FontSize="14"
                         Grid.Row="0"
-                        VerticalAlignment="Top">
+                        VerticalAlignment="Top"
+                        ItemsSource="{Binding ArticleTags}">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn
@@ -190,7 +197,8 @@
                         Grid.Row="1"
                         Style="{DynamicResource NewItemBorder}">
                         <Button
-                            Style="{DynamicResource NewItemButton}"/>
+                            Style="{DynamicResource NewItemButton}"
+                            Command="{Binding OpenCreateArticleTagWindow}"/>
                     </Border>
                 </Grid>
             </TabItem>
@@ -212,7 +220,8 @@
                         Background="White"
                         FontSize="14"
                         Grid.Row="0"
-                        VerticalAlignment="Top">
+                        VerticalAlignment="Top"
+                        ItemsSource="{Binding Comments}">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn
@@ -234,7 +243,8 @@
                         Grid.Row="1"
                         Style="{DynamicResource NewItemBorder}">
                         <Button
-                            Style="{DynamicResource NewItemButton}"/>
+                            Style="{DynamicResource NewItemButton}"
+                            Command="{Binding OpenCreateCommentWindow}"/>
                     </Border>
                 </Grid>
             </TabItem>
@@ -256,7 +266,8 @@
                         Background="White"
                         FontSize="14"
                         Grid.Row="0"
-                        VerticalAlignment="Top">
+                        VerticalAlignment="Top"
+                        ItemsSource="{Binding Users}">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn
@@ -278,7 +289,8 @@
                         Grid.Row="1"
                         Style="{DynamicResource NewItemBorder}">
                         <Button
-                            Style="{DynamicResource NewItemButton}"/>
+                            Style="{DynamicResource NewItemButton}"
+                            Command="{Binding OpenCreateUserWindow}"/>
                     </Border>
                 </Grid>
             </TabItem>
