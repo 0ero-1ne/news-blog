@@ -7,7 +7,60 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="View\Backend\AdminPanel.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Backend\CreateArticleTagWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Backend\CreateArticleWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Backend\CreateCategoryWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Backend\CreateCommentWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Backend\CreateTagWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Backend\CreateUserWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Style\FormLabelStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Style\NewItemBorderButton.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Style\TextBoxBorderStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Backend\AdminPanel.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Backend\CreateArticleTagWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Backend\CreateArticleWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Backend\CreateCategoryWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Backend\CreateCommentWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Backend\CreateTagWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Backend\CreateUserWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
