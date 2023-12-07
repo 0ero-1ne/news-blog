@@ -96,7 +96,7 @@ namespace news_blog.Model
                 bool isCategoryExists = db.Categories.Any(category => category.Title == Category);
                 if (!isCategoryExists && Category != null)
                 {
-                    Category category = new() { Title = Category, ParentCategory = ParentCategoryId < 0 ? 0 : ParentCategoryId };
+                    Category category = new() { Title = Category };
                     db.Categories.Add(category);
                     db.SaveChanges();
                     result = "Категория успешно создана";
@@ -120,7 +120,6 @@ namespace news_blog.Model
                     }
 
                     category.Title = CategoryTitle == null ? category.Title : CategoryTitle;
-                    category.ParentCategory = ParentCategoryId < 0 ? 0 : ParentCategoryId;
                     db.SaveChanges();
                     result = "Категория успешно обновлена";
                 }
