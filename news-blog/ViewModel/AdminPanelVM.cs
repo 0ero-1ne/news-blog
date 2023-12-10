@@ -12,7 +12,7 @@ using System.Windows;
 
 namespace news_blog.ViewModel
 {
-    public class AdminPanelVM : INotifyPropertyChanged
+    public class AdminPanelVM : ViewModelBase
     {
         private List<Article> _articles = DataWorker.GetArticles();
         public List<Article> Articles
@@ -80,49 +80,6 @@ namespace news_blog.ViewModel
             }
         }
 
-        private void SetCenterPositionOpen(Window window)
-        {
-            window.Owner = Application.Current.MainWindow;
-            window.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            window.ShowDialog();
-        }
-
-        private void OpenCreateArticleWindowMethod()
-        {
-            CreateArticleWindow window = new();
-            SetCenterPositionOpen(window);
-        }
-
-        private void OpenCreateCategoryWindowMethod()
-        {
-            CreateCategoryWindow window = new();
-            SetCenterPositionOpen(window);
-        }
-
-        private void OpenCreateTagWindowMethod()
-        {
-            CreateTagWindow window = new();
-            SetCenterPositionOpen(window);
-        }
-
-        private void OpenCreateArticleTagWindowMethod()
-        {
-            CreateArticleTagWindow window = new();
-            SetCenterPositionOpen(window);
-        }
-
-        private void OpenCreateCommentWindowMethod()
-        {
-            CreateCommentWindow window = new();
-            SetCenterPositionOpen(window);
-        }
-
-        private void OpenCreateUserWindowMethod()
-        {
-            CreateUserWindow window = new();
-            SetCenterPositionOpen(window);
-        }
-
         private RelayCommand? openCreateArticleWindow;
         public RelayCommand OpenCreateArticleWindow
         {
@@ -130,7 +87,7 @@ namespace news_blog.ViewModel
             {
                 return openCreateArticleWindow ?? new RelayCommand(obj =>
                 {
-                    OpenCreateArticleWindowMethod();
+                    OpenCreationWindowsCommands.OpenCreateArticleWindowMethod();
                 });
             }
         }
@@ -142,7 +99,7 @@ namespace news_blog.ViewModel
             {
                 return openCreateCategoryWindow ?? new RelayCommand(obj =>
                 {
-                    OpenCreateCategoryWindowMethod();
+                    OpenCreationWindowsCommands.OpenCreateCategoryWindowMethod();
                 });
             }
         }
@@ -154,7 +111,7 @@ namespace news_blog.ViewModel
             {
                 return openCreateTagWindow ?? new RelayCommand(obj =>
                 {
-                    OpenCreateTagWindowMethod();
+                    OpenCreationWindowsCommands.OpenCreateTagWindowMethod();
                 });
             }
         }
@@ -166,7 +123,7 @@ namespace news_blog.ViewModel
             {
                 return openCreateUserWindow ?? new RelayCommand(obj =>
                 {
-                    OpenCreateUserWindowMethod();
+                    OpenCreationWindowsCommands.OpenCreateUserWindowMethod();
                 });
             }
         }
@@ -178,7 +135,7 @@ namespace news_blog.ViewModel
             {
                 return openCreateArticleTagWindow ?? new RelayCommand(obj =>
                 {
-                    OpenCreateArticleTagWindowMethod();
+                    OpenCreationWindowsCommands.OpenCreateArticleTagWindowMethod();
                 });
             }
         }
@@ -190,18 +147,8 @@ namespace news_blog.ViewModel
             {
                 return openCreateCommentWindow ?? new RelayCommand(obj =>
                 {
-                    OpenCreateCommentWindowMethod();
+                    OpenCreationWindowsCommands.OpenCreateCommentWindowMethod();
                 });
-            }
-        }
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        private void NotifyPropertyChanged(String propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }

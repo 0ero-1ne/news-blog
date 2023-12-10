@@ -7,7 +7,8 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="News Blog - Привязать тег к статье" Height="350" Width="500"
-        Icon="pack://application:,,,/Images/Icon.png">
+        Icon="pack://application:,,,/Images/Icon.png"
+        Name="CreateArticleTagWnd">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -17,31 +18,31 @@
             Grid.Row="0">
             <Label
                 Padding="10,10,10,0"
-                Content="Статья (ID)"
+                Content="Статья"
                 Style="{DynamicResource FormLabel}"/>
-            <Border
-                Margin="10"
-                Style="{DynamicResource FormBorder}">
-                <TextBox Style="{DynamicResource FormTextBox}"/>
-            </Border>
+            <ComboBox
+                Style="{DynamicResource NewItemComboBox}"
+                ItemsSource="{Binding Articles}"
+                SelectedItem="{Binding Article}"
+                DisplayMemberPath="Title"/>
             <Label
                 Padding="10,10,10,0"
                 Content="Тег"
                 Style="{DynamicResource FormLabel}"/>
             <ComboBox
-                Style="{DynamicResource NewItemComboBox}">
-                <sys:String>Hello</sys:String>
-                <sys:String>Hello</sys:String>
-                <sys:String>Hello</sys:String>
-                <sys:String>Hello</sys:String>
-            </ComboBox>
+                Style="{DynamicResource NewItemComboBox}"
+                ItemsSource="{Binding Tags}"
+                SelectedItem="{Binding Tag}"
+                DisplayMemberPath="Title"/>
         </StackPanel>
         <Border
             Grid.Row="1"
             Margin="10">
             <Button
                 Content="Привязать тег"
-                Style="{DynamicResource NewItemButton}"/>
+                Style="{DynamicResource NewItemButton}"
+                Command="{Binding SaveArticleTag}"
+                CommandParameter="{Binding ElementName=CreateArticleTagWnd}"/>
         </Border>
     </Grid>
 </Window>

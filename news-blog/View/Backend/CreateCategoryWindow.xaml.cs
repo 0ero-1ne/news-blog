@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using news_blog.ViewModel.Backend;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -22,6 +23,7 @@ namespace news_blog.View.Backend
         public CreateCategoryWindow()
         {
             InitializeComponent();
+            DataContext = new CreateCategoryVM();
         }
     }
 }

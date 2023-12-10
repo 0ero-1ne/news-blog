@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:news_blog.View.Backend"
         mc:Ignorable="d"
         Title="News Blog - Новый тег" Height="250" Width="500"
-        Icon="pack://application:,,,/Images/Icon.png">
+        Icon="pack://application:,,,/Images/Icon.png"
+        Name="CreateTagWnd">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -21,7 +22,10 @@
             <Border
                 Margin="10"
                 Style="{DynamicResource FormBorder}">
-                <TextBox Style="{DynamicResource FormTextBox}"/>
+                <TextBox
+                    Style="{DynamicResource FormTextBox}"
+                    Text="{Binding Tag}"
+                    Name="TagBox"/>
             </Border>
         </StackPanel>
         <Border
@@ -29,7 +33,9 @@
             Margin="10">
             <Button
                 Content="Добавить тег"
-                Style="{DynamicResource NewItemButton}"/>
+                Style="{DynamicResource NewItemButton}"
+                Command="{Binding SaveTag}"
+                CommandParameter="{Binding ElementName=CreateTagWnd}"/>
         </Border>
     </Grid>
 </Window>

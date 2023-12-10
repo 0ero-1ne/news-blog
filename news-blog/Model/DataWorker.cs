@@ -28,7 +28,7 @@ namespace news_blog.Model
             string result = "Не удалось создать новый тег";
             using (var db = new ApplicationContext())
             {
-                bool isTagExist = db.Tags.Any(tag => tag.Title == Tag);
+                bool isTagExist = db.Tags.Any(tag => tag.Title!.ToLower() == Tag!.ToLower());
                 if (!isTagExist && Tag != null)
                 {
                     Tag tag = new() { Title = Tag };
@@ -88,12 +88,12 @@ namespace news_blog.Model
             }
         }
 
-        public static string CreateCategory(string? Category, int ParentCategoryId)
+        public static string CreateCategory(string? Category)
         {
             string result = "Не удалось создать новую категорию";
             using (var db = new ApplicationContext())
             {
-                bool isCategoryExists = db.Categories.Any(category => category.Title == Category);
+                bool isCategoryExists = db.Categories.Any(category => category.Title!.ToLower() == Category!.ToLower());
                 if (!isCategoryExists && Category != null)
                 {
                     Category category = new() { Title = Category };
@@ -105,7 +105,7 @@ namespace news_blog.Model
             return result;
         }
 
-        public static string UpdateCategory(int CategoryId, string? CategoryTitle, int ParentCategoryId)
+        public static string UpdateCategory(int CategoryId, string? CategoryTitle)
         {
             string result = "Не удалось обновить категорию";
             using (var db = new ApplicationContext())
@@ -158,7 +158,7 @@ namespace news_blog.Model
             string result = "Не удалось создать нового пользователя";
             using (var db = new ApplicationContext())
             {
-                bool isUserExists = db.Users.Any(user => user.Username == Username);
+                bool isUserExists = db.Users.Any(user => user.Username!.ToLower() == Username!.ToLower());
                 if (!isUserExists)
                 {
                     User user = new() { Username = Username, Password = Password, IsAdmin = IsAdmin ? 1 : 0 };
@@ -282,10 +282,14 @@ namespace news_blog.Model
             string result = "Не удалось привязать тег к статье";
             using (var db = new ApplicationContext())
             {
-                ArticleTag articleTag = new() { ArticleId = ArticleId, TagId = TagId };
-                db.ArticleTags.Add(articleTag);
-                db.SaveChanges();
-                result = "Тег успешно привязан к статье";
+                bool isArticleTagExists = db.ArticleTags.Any(articleTag => articleTag.Id == ArticleId && articleTag.TagId == TagId);
+                if (!isArticleTagExists)
+                {
+                    ArticleTag articleTag = new() { ArticleId = ArticleId, TagId = TagId };
+                    db.ArticleTags.Add(articleTag);
+                    db.SaveChanges();
+                    result = "Тег успешно привязан к статье";
+                }
             }
             return result;
         }
@@ -298,7 +302,7 @@ namespace news_blog.Model
                 ArticleTag articleTag = db.ArticleTags.SingleOrDefault(articleTag => articleTag.Id == ArticleTagId)!;
                 if (articleTag != null)
                 {
-                    articleTag.ArticleId = ArticleTagId;
+                    articleTag.ArticleId = ArticleId;
                     articleTag.TagId = TagId;
                     db.SaveChanges();
                     result = "Тег успешно привязан к статье";

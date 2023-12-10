@@ -7,7 +7,8 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="News Blog - Новая категория" Height="250" Width="500"
-        Icon="pack://application:,,,/Images/Icon.png">
+        Icon="pack://application:,,,/Images/Icon.png"
+        Name="CreateCategoryWnd">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -22,7 +23,9 @@
             <Border
                 Margin="10"
                 Style="{DynamicResource FormBorder}">
-                <TextBox Style="{DynamicResource FormTextBox}"/>
+                <TextBox
+                    Style="{DynamicResource FormTextBox}"
+                    Text="{Binding Category}"/>
             </Border>
         </StackPanel>
         <Border
@@ -30,7 +33,9 @@
             Margin="10">
             <Button
                 Content="Добавить категорию"
-                Style="{DynamicResource NewItemButton}"/>
+                Style="{DynamicResource NewItemButton}"
+                Command="{Binding SaveCategory}"
+                CommandParameter="{Binding ElementName=CreateCategoryWnd}"/>
         </Border>
     </Grid>
 </Window>

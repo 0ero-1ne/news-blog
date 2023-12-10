@@ -37,36 +37,46 @@
                         Grid.Row="0"
                         Padding="10"
                         VerticalAlignment="Top"
-                        ItemsSource="{Binding Articles}">
+                        ItemsSource="{Binding Articles}"
+                        x:Name="ArticlesView">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn
                                     Header="ID"
-                                    Width="50"/>
+                                    Width="50"
+                                    DisplayMemberBinding="{Binding Path=Id}"/>
                                 <GridViewColumn
                                     Header="Title"
-                                    Width="100"/>
+                                    Width="100"
+                                    DisplayMemberBinding="{Binding Path=Title}"/>
                                 <GridViewColumn
                                     Header="Short Text"
-                                    Width="120"/>
+                                    Width="120"
+                                    DisplayMemberBinding="{Binding Path=ShortText}"/>
                                 <GridViewColumn
                                     Header="Text"
-                                    Width="100"/>
+                                    Width="100"
+                                    DisplayMemberBinding="{Binding Path=Text}"/>
                                 <GridViewColumn
                                     Header="Author"
-                                    Width="100"/>
+                                    Width="100"
+                                    DisplayMemberBinding="{Binding Path=AuthorId}"/>
                                 <GridViewColumn
                                     Header="Category"
-                                    Width="100"/>
+                                    Width="100"
+                                    DisplayMemberBinding="{Binding Path=CategoryId}"/>
                                 <GridViewColumn
                                     Header="Created"
-                                    Width="100"/>
+                                    Width="100"
+                                    DisplayMemberBinding="{Binding Path=Created}"/>
                                 <GridViewColumn
                                     Header="Updated"
-                                    Width="100"/>
+                                    Width="100"
+                                    DisplayMemberBinding="{Binding Path=Updated}"/>
                                 <GridViewColumn
                                     Header="Rating"
-                                    Width="100"/>
+                                    Width="100"
+                                    DisplayMemberBinding="{Binding Path=Rating}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
@@ -98,15 +108,18 @@
                         FontSize="14"
                         Grid.Row="0"
                         VerticalAlignment="Top"
-                        ItemsSource="{Binding Categories}">
+                        ItemsSource="{Binding Categories}"
+                        x:Name="CategoriesView">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn
                                 Header="ID"
-                                Width="50"/>
+                                Width="50"
+                                DisplayMemberBinding="{Binding Path=Id}"/>
                                 <GridViewColumn
                                 Header="Title"
-                                Width="100"/>
+                                Width="100"
+                                DisplayMemberBinding="{Binding Path=Title}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
@@ -138,15 +151,18 @@
                         FontSize="14"
                         Grid.Row="0"
                         VerticalAlignment="Top"
-                        ItemsSource="{Binding Tags}">
+                        ItemsSource="{Binding Tags}"
+                        x:Name="TagsView">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn
                                     Header="ID"
-                                    Width="50"/>
+                                    Width="50"
+                                    DisplayMemberBinding="{Binding Path=Id}"/>
                                 <GridViewColumn
                                     Header="Title"
-                                    Width="100"/>
+                                    Width="100"
+                                    DisplayMemberBinding="{Binding Path=Title}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
@@ -178,18 +194,22 @@
                         FontSize="14"
                         Grid.Row="0"
                         VerticalAlignment="Top"
-                        ItemsSource="{Binding ArticleTags}">
+                        ItemsSource="{Binding ArticleTags}"
+                        x:Name="ArticleTagsView">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn
-                                Header="ID"
-                                Width="50"/>
+                                    Header="ID"
+                                    Width="50"
+                                    DisplayMemberBinding="{Binding Path=Id}"/>
                                 <GridViewColumn
-                                Header="Article ID"
-                                Width="120"/>
+                                    Header="Article ID"
+                                    Width="120"
+                                    DisplayMemberBinding="{Binding Path=ArticleId}"/>
                                 <GridViewColumn
-                                Header="Tag ID"
-                                Width="120"/>
+                                    Header="Tag ID"
+                                    Width="120"
+                                    DisplayMemberBinding="{Binding Path=TagId}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
@@ -221,21 +241,26 @@
                         FontSize="14"
                         Grid.Row="0"
                         VerticalAlignment="Top"
-                        ItemsSource="{Binding Comments}">
+                        ItemsSource="{Binding Comments}"
+                        x:Name="CommentsView">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn
-                                Header="ID"
-                                Width="50"/>
+                                    Header="ID"
+                                    Width="50"
+                                    DisplayMemberBinding="{Binding Path=Id}"/>
                                 <GridViewColumn
-                                Header="User ID"
-                                Width="120"/>
+                                    Header="User ID"
+                                    Width="120"
+                                    DisplayMemberBinding="{Binding Path=UserId}"/>
                                 <GridViewColumn
-                                Header="Article ID"
-                                Width="120"/>
+                                    Header="Article ID"
+                                    Width="120"
+                                    DisplayMemberBinding="{Binding Path=ArticleId}"/>
                                 <GridViewColumn
-                                Header="Text"
-                                Width="120"/>
+                                    Header="Text"
+                                    Width="120"
+                                    DisplayMemberBinding="{Binding Path=Text}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
@@ -267,21 +292,26 @@
                         FontSize="14"
                         Grid.Row="0"
                         VerticalAlignment="Top"
-                        ItemsSource="{Binding Users}">
+                        ItemsSource="{Binding Users}"
+                        x:Name="UsersView">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn
                                 Header="ID"
-                                Width="50"/>
+                                Width="50"
+                                DisplayMemberBinding="{Binding Path=Id}"/>
                                 <GridViewColumn
                                 Header="Username"
-                                Width="120"/>
+                                Width="120"
+                                DisplayMemberBinding="{Binding Path=Username}"/>
                                 <GridViewColumn
                                 Header="Password"
-                                Width="120"/>
+                                Width="120"
+                                DisplayMemberBinding="{Binding Path=Password}"/>
                                 <GridViewColumn
                                 Header="Is admin"
-                                Width="120"/>
+                                Width="120"
+                                DisplayMemberBinding="{Binding Path=IsAdmin}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using news_blog.ViewModel.Backend;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,7 @@ namespace news_blog.View.Backend
         public CreateArticleTagWindow()
         {
             InitializeComponent();
+            DataContext = new CreateArticleTagVM();
         }
     }
 }

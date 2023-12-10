@@ -20,10 +20,23 @@ namespace news_blog.View
     /// </summary>
     public partial class AdminPanel : Window
     {
+        public static ListView? TagsList;
+        public static ListView? CategoriesList;
+        public static ListView? UsersList;
+        public static ListView? CommentsList;
+        public static ListView? ArticlesList;
+        public static ListView? ArticleTagsList;
+
         public AdminPanel()
         {
             InitializeComponent();
             DataContext = new AdminPanelVM();
+            TagsList = TagsView;
+            CategoriesList = CategoriesView;
+            UsersList = UsersView;
+            CommentsList = CommentsView;
+            ArticlesList = ArticlesView;
+            ArticleTagsList = ArticleTagsView;
         }
     }
 }

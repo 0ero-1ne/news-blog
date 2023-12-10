@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         Title="News Blog - Новая статья" Height="700" Width="500"
-        Icon="pack://application:,,,/Images/Icon.png">
+        Icon="pack://application:,,,/Images/Icon.png"
+        Name="CreateArticleWnd">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -22,7 +23,9 @@
             <Border
                 Margin="10"
                 Style="{DynamicResource FormBorder}">
-                <TextBox Style="{DynamicResource FormTextBox}"/>
+                <TextBox
+                    Style="{DynamicResource FormTextBox}"
+                    Text="{Binding Title}"/>
             </Border>
             <Label
                 Padding="10,10,10,0"
@@ -31,7 +34,9 @@
             <Border
                 Margin="10"
                 Style="{DynamicResource FormBorder}">
-                <TextBox Style="{DynamicResource FormTextBox}"/>
+                <TextBox
+                    Style="{DynamicResource FormTextBox}"
+                    Text="{Binding ShortText}"/>
             </Border>
             <Label
                 Padding="10,10,10,0"
@@ -43,6 +48,7 @@
                 Style="{DynamicResource FormBorder}">
                 <TextBox
                     Style="{DynamicResource FormTextBox}"
+                    Text="{Binding Text}"
                     TextWrapping="Wrap"
                     AcceptsReturn="True"/>
             </Border>
@@ -51,30 +57,32 @@
                 Content="Категория"
                 Style="{DynamicResource FormLabel}"/>
             <ComboBox
-                Style="{DynamicResource NewItemComboBox}">
-                <sys:String>Hello</sys:String>
-                <sys:String>Hello</sys:String>
-                <sys:String>Hello</sys:String>
-                <sys:String>Hello</sys:String>
+                Style="{DynamicResource NewItemComboBox}"
+                ItemsSource="{Binding Categories}"
+                DisplayMemberPath="Title"
+                SelectedItem="{Binding Category}"
+                MaxDropDownHeight="150">
             </ComboBox>
             <Label
                 Padding="10,10,10,0"
                 Content="Автор"
                 Style="{DynamicResource FormLabel}"/>
             <ComboBox
-                Style="{DynamicResource NewItemComboBox}">
-                <sys:String>Hello</sys:String>
-                <sys:String>Hello</sys:String>
-                <sys:String>Hello</sys:String>
-                <sys:String>Hello</sys:String>
+                Style="{DynamicResource NewItemComboBox}"
+                ItemsSource="{Binding Users}"
+                DisplayMemberPath="Username"
+                SelectedItem="{Binding Author}"
+                MaxDropDownHeight="150">
             </ComboBox>
         </StackPanel>
         <Border
             Grid.Row="1"
             Margin="10">
             <Button
-            Content="Добавить статью"
-            Style="{DynamicResource NewItemButton}"/>
+                Content="Добавить статью"
+                Style="{DynamicResource NewItemButton}"
+                Command="{Binding SaveArticle}"
+                CommandParameter="{Binding ElementName=CreateArticleWnd}"/>
         </Border>
     </Grid>
 </Window>
