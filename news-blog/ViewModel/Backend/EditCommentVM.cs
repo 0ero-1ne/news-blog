@@ -87,23 +87,23 @@ namespace news_blog.ViewModel.Backend
                     Window window = (Window)obj;
                     if (Text == "" || Text == null)
                     {
-                        MessageBox.Show("Неверный текст");
+                        MessageBox.Show("Неверный текст", "News Blog - Информация", MessageBoxButton.OK);
                         return;
                     }
                     if (User == null)
                     {
-                        MessageBox.Show("Неверный пользователь");
+                        MessageBox.Show("Неверный пользователь", "News Blog - Информация", MessageBoxButton.OK);
                         return;
                     }
                     if (Article == null)
                     {
-                        MessageBox.Show("Неверная статья");
+                        MessageBox.Show("Неверная статья", "News Blog - Информация", MessageBoxButton.OK);
                         return;
                     }
                     string result = DataWorker.UpdateComment(_comment!.Id, User.Id, Article.Id, Text);
+                    UpdateListViews.UpdateComments();
                     window.Close();
                     MessageBox.Show(result);
-                    UpdateListViews.UpdateComments();
                 });
             }
         }

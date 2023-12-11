@@ -41,13 +41,13 @@ namespace news_blog.ViewModel.Backend
                     Window window = (Window)obj;
                     if (Title == "" || Title == null)
                     {
-                        MessageBox.Show("Неверный тег");
+                        MessageBox.Show("Неверный тег", "News Blog - Информация", MessageBoxButton.OK);
                         return;
                     }
                     string result = DataWorker.UpdateTag(tag!.Id, Title);
+                    UpdateListViews.UpdateTags();
                     window.Close();
                     MessageBox.Show(result);
-                    UpdateListViews.UpdateTags();
                 });
             }
         }

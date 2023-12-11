@@ -34,13 +34,14 @@ namespace news_blog.ViewModel.Backend
 
                     if (Tag == null || Tag == "")
                     {
-                        MessageBox.Show("Неверный тег");
+                        MessageBox.Show("Неверный тег", "News Blog - Информация", MessageBoxButton.OK);
+                        return;
                     }
 
                     var result = DataWorker.CreateTag(Tag);
+                    UpdateListViews.UpdateTags();
                     window.Close();
                     MessageBox.Show(result);
-                    UpdateListViews.UpdateTags();
                 });
             }
         }

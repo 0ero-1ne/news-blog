@@ -287,7 +287,7 @@ namespace news_blog.ViewModel.Backend
                             break;
                     }
                     UpdateListViews.UpdateAllLists();
-                    MessageBox.Show(result);
+                    MessageBox.Show(result, "News Blog - Информация", MessageBoxButton.OK);
                 });
             }
         }
@@ -335,6 +335,9 @@ namespace news_blog.ViewModel.Backend
                                 OpenEditWindowsCommands.OpenEditUserWindow(SelectedUser);
                                 SelectedUser = null;
                             }
+                            break;
+                        default:
+                            MessageBox.Show("Ничего не выбрано", "News Blog - Информация", MessageBoxButton.OK);
                             break;
                     }
                 });

@@ -64,14 +64,14 @@ namespace news_blog.View.Backend
 
                     if (Username == "" || Username == null)
                     {
-                        MessageBox.Show("Неверное имя пользователя");
+                        MessageBox.Show("Неверное имя пользователя", "News Blog - Информация", MessageBoxButton.OK);
                         return;
                     }
 
                     var result = DataWorker.UpdateUser(_user!.Id, Username, Password == "" ? _user.Password : Password, false);
+                    UpdateListViews.UpdateUsers();
                     window.Close();
                     MessageBox.Show(result);
-                    UpdateListViews.UpdateUsers();
                 });
             }
         }

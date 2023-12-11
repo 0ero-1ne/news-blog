@@ -66,18 +66,18 @@ namespace news_blog.ViewModel.Backend
                     Window window = (Window)obj;
                     if (Article == null)
                     {
-                        MessageBox.Show("Неверная статья");
+                        MessageBox.Show("Неверная статья", "News Blog - Информация", MessageBoxButton.OK);
                         return;
                     }
                     if (Tag == null)
                     {
-                        MessageBox.Show("Неверный тег");
+                        MessageBox.Show("Неверный тег", "News Blog - Информация", MessageBoxButton.OK);
                         return;
                     }
                     string result = DataWorker.CreateArticleTag(Article.Id, Tag.Id);
+                    UpdateListViews.UpdateArticleTags();
                     window.Close();
                     MessageBox.Show(result);
-                    UpdateListViews.UpdateArticleTags();
                 });
             }
         }

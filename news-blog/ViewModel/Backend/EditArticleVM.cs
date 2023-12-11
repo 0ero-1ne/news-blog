@@ -124,38 +124,38 @@ namespace news_blog.ViewModel.Backend
                     Window window = (Window)obj;
                     if (Title == "" || Title == null)
                     {
-                        MessageBox.Show("Неверный заголовок");
+                        MessageBox.Show("Неверный заголовок", "News Blog - Информация", MessageBoxButton.OK);
                         return;
                     }
                     if (ShortText == "" || ShortText == null)
                     {
-                        MessageBox.Show("Неверный приветственный текст");
+                        MessageBox.Show("Неверный приветственный текст", "News Blog - Информация", MessageBoxButton.OK);
                         return;
                     }
                     if (Text == "" || Text == null)
                     {
-                        MessageBox.Show("Неверный текст");
+                        MessageBox.Show("Неверный текст", "News Blog - Информация", MessageBoxButton.OK);
                         return;
                     }
                     if (Category == null)
                     {
-                        MessageBox.Show("Неверная категория");
+                        MessageBox.Show("Неверная категория", "News Blog - Информация", MessageBoxButton.OK);
                         return;
                     }
                     if (Author == null)
                     {
-                        MessageBox.Show("Неверный автор");
+                        MessageBox.Show("Неверный автор", "News Blog - Информация", MessageBoxButton.OK);
                         return;
                     }
                     if (!Regex.IsMatch(Rating!, @"^0$|^[1-9][0-9]*$"))
                     {
-                        MessageBox.Show("Неверный рейтинг");
+                        MessageBox.Show("Неверный рейтинг", "News Blog - Информация", MessageBoxButton.OK);
                         return;
                     }
                     string result = DataWorker.UpdateArticle(_article!.Id, Title, ShortText, Text, Author.Id, Category.Id, Convert.ToInt32(Rating));
+                    UpdateListViews.UpdateArticles();
                     window.Close();
                     MessageBox.Show(result);
-                    UpdateListViews.UpdateArticles();
                 });
             }
         }

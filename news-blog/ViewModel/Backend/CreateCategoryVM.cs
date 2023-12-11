@@ -34,13 +34,13 @@ namespace news_blog.ViewModel.Backend
 
                     if (Category == null || Category == "")
                     {
-                        MessageBox.Show("Неверная категория");
+                        MessageBox.Show("Неверная категория", "News Blog - Информация", MessageBoxButton.OK);
                         return;
                     }
 
-                    window.Close();
                     var result = DataWorker.CreateCategory(Category);
                     UpdateListViews.UpdateCategories();
+                    window.Close();
                     MessageBox.Show(result);
                 });
             }

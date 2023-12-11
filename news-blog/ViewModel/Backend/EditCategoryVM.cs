@@ -42,14 +42,14 @@ namespace news_blog.ViewModel.Backend
 
                     if (Title == null || Title == "")
                     {
-                        MessageBox.Show("Неверная категория");
+                        MessageBox.Show("Неверная категория", "News Blog - Информация", MessageBoxButton.OK);
                         return;
                     }
 
                     var result = DataWorker.UpdateCategory(category!.Id, Title);
+                    UpdateListViews.UpdateCategories();
                     window.Close();
                     MessageBox.Show(result);
-                    UpdateListViews.UpdateCategories();
                 });
             }
         }
