@@ -12,4 +12,8 @@
         <Setter Property="FontSize" Value="18px" />
         <Setter Property="TextAlignment" Value="Left" />
     </Style>
+    <Style x:Key="FormPasswordBox" TargetType="PasswordBox">
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="FontSize" Value="18px" />
+    </Style>
 </ResourceDictionary>

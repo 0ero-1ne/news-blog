@@ -33,7 +33,9 @@ namespace news_blog.ViewModel.Backend
                     var window = (Window)obj;
 
                     if (Tag == null || Tag == "")
-                        return;
+                    {
+                        MessageBox.Show("Неверный тег");
+                    }
 
                     var result = DataWorker.CreateTag(Tag);
                     window.Close();

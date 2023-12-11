@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace news_blog.ViewModel
+namespace news_blog.ViewModel.Backend
 {
     public class AdminPanelVM : ViewModelBase
     {
@@ -50,7 +50,7 @@ namespace news_blog.ViewModel
 
         private List<Category> _categories = DataWorker.GetCategories();
         public List<Category> Categories
-        { 
+        {
             get => _categories;
             set
             {
@@ -288,6 +288,55 @@ namespace news_blog.ViewModel
                     }
                     UpdateListViews.UpdateAllLists();
                     MessageBox.Show(result);
+                });
+            }
+        }
+
+        private RelayCommand? editItem;
+        public RelayCommand? EditItem
+        {
+            get
+            {
+                return editItem ?? new RelayCommand(obj =>
+                {
+                    switch(SelectedTabItem!.Name)
+                    {
+                        case "Articles":
+                            if (SelectedArticle != null)
+                            {
+                                OpenEditWindowsCommands.OpenEditArticleWindow(SelectedArticle);
+                                SelectedArticle = null;
+                            }
+                            break;
+                        case "Categories":
+                            if (SelectedCategory != null)
+                            {
+                                OpenEditWindowsCommands.OpenEditCategoryWindow(SelectedCategory);
+                                SelectedCategory = null;
+                            }
+                            break;
+                        case "Tags":
+                            if (SelectedTag != null)
+                            {
+                                OpenEditWindowsCommands.OpenEditTagWindow(SelectedTag);
+                                SelectedTag = null;
+                            }
+                            break;
+                        case "Comments":
+                            if (SelectedComment != null)
+                            {
+                                OpenEditWindowsCommands.OpenEditCommentWindow(SelectedComment);
+                                SelectedComment = null;
+                            }
+                            break;
+                        case "Users":
+                            if (SelectedUser != null)
+                            {
+                                OpenEditWindowsCommands.OpenEditUserWindow(SelectedUser);
+                                SelectedUser = null;
+                            }
+                            break;
+                    }
                 });
             }
         }

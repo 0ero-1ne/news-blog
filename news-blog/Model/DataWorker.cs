@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.Design;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
@@ -28,8 +29,13 @@ namespace news_blog.Model
             string result = "Не удалось создать новый тег";
             using (var db = new ApplicationContext())
             {
-                bool isTagExist = db.Tags.Any(tag => tag.Title!.ToLower() == Tag!.ToLower());
-                if (!isTagExist && Tag != null)
+                bool isTagExists = false;
+
+                foreach(var tag in GetTags())
+                    if (tag.Title!.ToLower() == Tag!.ToLower())
+                        isTagExists = true;
+
+                if (!isTagExists && Tag != null)
                 {
                     Tag tag = new() { Title = Tag };
                     db.Tags.Add(tag);
@@ -46,17 +52,21 @@ namespace news_blog.Model
             using (var db = new ApplicationContext())
             {
                 Tag tag = db.Tags.SingleOrDefault(tag => tag.Id == TagId)!;
-                Tag isTagExist = db.Tags.SingleOrDefault(tag => tag.Title == TagTitle)!;
+
+                bool isTagExists = false;
+
+                foreach (var t in GetTags())
+                    if (t.Title!.ToLower() == TagTitle!.ToLower())
+                        isTagExists = true;
+
                 if (tag != null)
                 {
-                    if (isTagExist != null && isTagExist.Id != tag.Id)
+                    if (!isTagExists && TagTitle != null)
                     {
-                        return result;
+                        tag.Title = TagTitle == null ? tag.Title : TagTitle;
+                        db.SaveChanges();
+                        result = "Тег успешно обновлен";
                     }
-
-                    tag.Title = TagTitle == null ? tag.Title : TagTitle;
-                    db.SaveChanges();
-                    result = "Тег успешно обновлен";
                 }
             }
             return result;
@@ -98,7 +108,12 @@ namespace news_blog.Model
             string result = "Не удалось создать новую категорию";
             using (var db = new ApplicationContext())
             {
-                bool isCategoryExists = db.Categories.Any(category => category.Title!.ToLower() == Category!.ToLower());
+                bool isCategoryExists = false;
+
+                foreach (var category in GetCategories())
+                    if (category.Title!.ToLower() == Category!.ToLower())
+                        isCategoryExists = true;
+
                 if (!isCategoryExists && Category != null)
                 {
                     Category category = new() { Title = Category };
@@ -116,17 +131,21 @@ namespace news_blog.Model
             using (var db = new ApplicationContext())
             {
                 Category category = db.Categories.SingleOrDefault(category => category.Id == CategoryId)!;
-                Category isCategoryExists = db.Categories.Single(category => category.Title == CategoryTitle)!;
+
+                bool isCategoryExists = false;
+
+                foreach (var c in GetCategories())
+                    if (c.Title!.ToLower() == CategoryTitle!.ToLower())
+                        isCategoryExists = true;
+
                 if (category != null)
                 {
-                    if (isCategoryExists != null && isCategoryExists.Id != category.Id)
+                    if (!isCategoryExists && CategoryTitle != null)
                     {
-                        return result;
+                        category.Title = CategoryTitle == null ? category.Title : CategoryTitle;
+                        db.SaveChanges();
+                        result = "Категория успешно обновлена";
                     }
-
-                    category.Title = CategoryTitle == null ? category.Title : CategoryTitle;
-                    db.SaveChanges();
-                    result = "Категория успешно обновлена";
                 }
             }
             return result;
@@ -172,7 +191,9 @@ namespace news_blog.Model
                 bool isUserExists = db.Users.Any(user => user.Username!.ToLower() == Username!.ToLower());
                 if (!isUserExists)
                 {
-                    User user = new() { Username = Username, Password = Password, IsAdmin = IsAdmin ? 1 : 0 };
+                    var passwordBytes = Encoding.UTF8.GetBytes(Password!);
+                    var passwordHash = SHA256.HashData(passwordBytes);
+                    User user = new() { Username = Username, Password = Convert.ToHexString(passwordHash), IsAdmin = IsAdmin ? 1 : 0 };
                     db.Users.Add(user);
                     db.SaveChanges();
                     result = "Пользователь успешно добавлен";
@@ -195,8 +216,14 @@ namespace news_blog.Model
                         return result;
                     }
 
+                    if (user.Password != Password!)
+                    {
+                        var passwordBytes = Encoding.UTF8.GetBytes(Password!);
+                        var passwordHash = SHA256.HashData(passwordBytes);
+                        user.Password = Convert.ToHexString(passwordHash);
+                    }
+
                     user.Username = Username == null ? user.Username : Username;
-                    user.Password = Password == null ? user.Password : Password;
                     user.IsAdmin = IsAdmin ? 1 : 0;
                     db.SaveChanges();
                     result = "Пользователь успешно обновлён";
@@ -395,10 +422,15 @@ namespace news_blog.Model
             using (var db = new ApplicationContext())
             {
                 Article article = db.Articles.SingleOrDefault(article => article.Id == ArticleId)!;
-                Article isArticleExists = db.Articles.SingleOrDefault(article => article.Title!.ToLower() == Title!.ToLower())!;
+                bool isArticleExists = false;
+
+                foreach (var a in GetArticles())
+                    if (a.Title!.ToLower() == Title!.ToLower())
+                        isArticleExists = true;
+
                 if (article != null)
                 {
-                    if (isArticleExists != null && isArticleExists.Id != article.Id)
+                    if (isArticleExists)
                     {
                         return result;
                     }

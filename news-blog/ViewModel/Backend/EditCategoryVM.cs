@@ -10,16 +10,24 @@ using news_blog.View;
 
 namespace news_blog.ViewModel.Backend
 {
-    public class CreateCategoryVM : ViewModelBase
+    public class EditCategoryVM : ViewModelBase
     {
-        private string? _category;
-        public string? Category
+        private readonly Category? category;
+
+        public EditCategoryVM(Category category)
         {
-            get => _category;
+            this.category = category;
+            _title = category.Title;
+        }
+
+        private string? _title;
+        public string? Title
+        {
+            get => _title;
             set
             {
-                _category = value!.Trim();
-                NotifyPropertyChanged(nameof(Category));
+                _title = value!.Trim();
+                NotifyPropertyChanged(nameof(Title));
             }
         }
 
@@ -32,16 +40,16 @@ namespace news_blog.ViewModel.Backend
                 {
                     var window = (Window)obj;
 
-                    if (Category == null || Category == "")
+                    if (Title == null || Title == "")
                     {
                         MessageBox.Show("Неверная категория");
                         return;
                     }
 
+                    var result = DataWorker.UpdateCategory(category!.Id, Title);
                     window.Close();
-                    var result = DataWorker.CreateCategory(Category);
-                    UpdateListViews.UpdateCategories();
                     MessageBox.Show(result);
+                    UpdateListViews.UpdateCategories();
                 });
             }
         }

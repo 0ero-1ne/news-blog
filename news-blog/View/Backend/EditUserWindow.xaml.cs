@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +13,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using news_blog.Command;
 using news_blog.Model;
-using news_blog.ViewModel;
 using news_blog.ViewModel.Backend;
 
 namespace news_blog.View.Backend
@@ -22,12 +20,17 @@ namespace news_blog.View.Backend
     /// <summary>
     /// Interaction logic for CreateUserWindow.xaml
     /// </summary>
-    public partial class CreateUserWindow : Window
+    public partial class EditUserWindow : Window
     {
-        public CreateUserWindow()
+        private User? _user;
+
+        public EditUserWindow(User user)
         {
             InitializeComponent();
             DataContext = this;
+            _user = user;
+            Username = _user.Username;
+            Password = _user.Password;
         }
 
         private string? _username;
@@ -65,13 +68,7 @@ namespace news_blog.View.Backend
                         return;
                     }
 
-                    if (Password == "" || Password == null || Password!.Length < 6)
-                    {
-                        MessageBox.Show("Неверный пароль");
-                        return;
-                    }
-
-                    var result = DataWorker.CreateUser(Username, Password, false);
+                    var result = DataWorker.UpdateUser(_user!.Id, Username, Password == "" ? _user.Password : Password, false);
                     window.Close();
                     MessageBox.Show(result);
                     UpdateListViews.UpdateUsers();

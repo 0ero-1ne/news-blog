@@ -28,7 +28,7 @@
                 </TabItem.Header>
                 <TabItem.ContextMenu>
                     <ContextMenu>
-                        <MenuItem Header="Редактировать статью" />
+                        <MenuItem Header="Редактировать статью" Command="{Binding EditItem}"/>
                         <MenuItem Header="Удалить статью" Command="{Binding DeleteItem}" />
                     </ContextMenu>
                 </TabItem.ContextMenu>
@@ -106,7 +106,7 @@
                 </TabItem.Header>
                 <TabItem.ContextMenu>
                     <ContextMenu>
-                        <MenuItem Header="Редактировать категорию" />
+                        <MenuItem Header="Редактировать категорию" Command="{Binding EditItem}"/>
                         <MenuItem Header="Удалить категорию" Command="{Binding DeleteItem}" />
                     </ContextMenu>
                 </TabItem.ContextMenu>
@@ -156,7 +156,7 @@
                 </TabItem.Header>
                 <TabItem.ContextMenu>
                     <ContextMenu>
-                        <MenuItem Header="Редактировать тег" />
+                        <MenuItem Header="Редактировать тег" Command="{Binding EditItem}"/>
                         <MenuItem Header="Удалить тег" Command="{Binding DeleteItem}" />
                     </ContextMenu>
                 </TabItem.ContextMenu>
@@ -206,7 +206,6 @@
                 </TabItem.Header>
                 <TabItem.ContextMenu>
                     <ContextMenu>
-                        <MenuItem Header="Редактировать привязку" />
                         <MenuItem Header="Удалить привязку" Command="{Binding DeleteItem}" />
                     </ContextMenu>
                 </TabItem.ContextMenu>
@@ -260,7 +259,7 @@
                 </TabItem.Header>
                 <TabItem.ContextMenu>
                     <ContextMenu>
-                        <MenuItem Header="Редактировать комментарий" />
+                        <MenuItem Header="Редактировать комментарий" Command="{Binding EditItem}"/>
                         <MenuItem Header="Удалить комментарий" Command="{Binding DeleteItem}" />
                     </ContextMenu>
                 </TabItem.ContextMenu>
@@ -318,7 +317,7 @@
                 </TabItem.Header>
                 <TabItem.ContextMenu>
                     <ContextMenu>
-                        <MenuItem Header="Редактировать пользователя" />
+                        <MenuItem Header="Редактировать пользователя" Command="{Binding EditItem}"/>
                         <MenuItem Header="Удалить пользователя" Command="{Binding DeleteItem}" />
                     </ContextMenu>
                 </TabItem.ContextMenu>

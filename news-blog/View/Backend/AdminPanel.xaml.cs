@@ -12,6 +12,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using news_blog.ViewModel.Backend;
+using news_blog.Command;
+using news_blog.Context;
+using news_blog.Model;
 
 namespace news_blog.View
 {

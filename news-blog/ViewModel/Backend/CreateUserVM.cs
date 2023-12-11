@@ -34,17 +34,6 @@ namespace news_blog.ViewModel.Backend
             }
         }
 
-        private string? _isAdmin;
-        public string? IsAdmin
-        {
-            get => _isAdmin;
-            set
-            {
-                _isAdmin = value!.Trim();
-                NotifyPropertyChanged(nameof(IsAdmin));
-            }
-        }
-
         private RelayCommand? saveUser;
         public RelayCommand SaveUser
         {
