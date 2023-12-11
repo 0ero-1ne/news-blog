@@ -70,6 +70,11 @@ namespace news_blog.Model
                 Tag tag = db.Tags.SingleOrDefault(tag => tag.Id == TagId)!;
                 if (tag != null)
                 {
+                    List<ArticleTag> articleTags = GetArticleTags();
+                    foreach (var articleTag in articleTags)
+                    {
+                        if (articleTag.TagId == TagId) DeleteArticleTag(articleTag.Id);
+                    }
                     db.Tags.Remove(tag);
                     db.SaveChanges();
                     result = "Тег успешно удалён";
@@ -135,6 +140,12 @@ namespace news_blog.Model
                 Category category = db.Categories.SingleOrDefault(category => category.Id == CategoryId)!;
                 if (category != null)
                 {
+                    List<Article> articles = GetArticles();
+                    List<Comment> comments = GetComments();
+                    foreach (var article in articles)
+                    {
+                        if (article.CategoryId == CategoryId) article.CategoryId = 1;
+                    }
                     db.Categories.Remove(category);
                     db.SaveChanges();
                     result = "Категория успешно удалена";
@@ -202,6 +213,11 @@ namespace news_blog.Model
                 User user = db.Users.SingleOrDefault(user => user.Id == UserId)!;
                 if (user != null)
                 {
+                    List<Article> articles = GetArticles();
+                    foreach (var article in articles)
+                    {
+                        if (article.AuthorId == UserId) DeleteArticle(article.Id);
+                    }
                     db.Users.Remove(user);
                     db.SaveChanges();
                     result = "Пользователь успешно удалён";
@@ -409,6 +425,16 @@ namespace news_blog.Model
                 Article article = db.Articles.SingleOrDefault(article => article.Id == ArticleId)!;
                 if (article != null)
                 {
+                    List<ArticleTag> articleTags = GetArticleTags();
+                    List<Comment> comments = GetComments();
+                    foreach (var tag in articleTags)
+                    {
+                        if (tag.ArticleId == ArticleId) DeleteArticleTag(tag.Id);
+                    }
+                    foreach (var comment in comments)
+                    {
+                        if (comment.ArticleId == ArticleId) DeleteComment(comment.Id);
+                    }
                     db.Articles.Remove(article);
                     db.SaveChanges();
                     result = "Статья успешно удалена";

@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace news_blog.ViewModel
 {
@@ -148,6 +149,145 @@ namespace news_blog.ViewModel
                 return openCreateCommentWindow ?? new RelayCommand(obj =>
                 {
                     OpenCreationWindowsCommands.OpenCreateCommentWindowMethod();
+                });
+            }
+        }
+
+        private Article? _selectedArticle;
+        public Article? SelectedArticle
+        {
+            get => _selectedArticle;
+            set
+            {
+                _selectedArticle = value;
+                NotifyPropertyChanged(nameof(SelectedArticle));
+            }
+        }
+
+        private Category? _selectedCategory;
+        public Category? SelectedCategory
+        {
+            get => _selectedCategory;
+            set
+            {
+                _selectedCategory = value;
+                NotifyPropertyChanged(nameof(SelectedCategory));
+            }
+        }
+
+        private Tag? _selectedTag;
+        public Tag? SelectedTag
+        {
+            get => _selectedTag;
+            set
+            {
+                _selectedTag = value;
+                NotifyPropertyChanged(nameof(SelectedTag));
+            }
+        }
+
+        private ArticleTag? _selectedArticleTag;
+        public ArticleTag? SelectedArticleTag
+        {
+            get => _selectedArticleTag;
+            set
+            {
+                _selectedArticleTag = value;
+                NotifyPropertyChanged(nameof(SelectedArticleTag));
+            }
+        }
+
+        private Comment? _selectedComment;
+        public Comment? SelectedComment
+        {
+            get => _selectedComment;
+            set
+            {
+                _selectedComment = value;
+                NotifyPropertyChanged(nameof(SelectedComment));
+            }
+        }
+
+        private User? _selectedUser;
+        public User? SelectedUser
+        {
+            get => _selectedUser;
+            set
+            {
+                _selectedUser = value;
+                NotifyPropertyChanged(nameof(SelectedUser));
+            }
+        }
+
+        private TabItem? _selectedTabItem;
+        public TabItem? SelectedTabItem
+        {
+            get => _selectedTabItem;
+            set
+            {
+                _selectedTabItem = value;
+                NotifyPropertyChanged(nameof(SelectedTabItem));
+            }
+        }
+
+        private RelayCommand? deleteItem;
+        public RelayCommand DeleteItem
+        {
+            get
+            {
+                return deleteItem ?? new RelayCommand(obj =>
+                {
+                    string result = "Ничего не выбрано";
+
+                    switch (SelectedTabItem!.Name)
+                    {
+                        case "Articles":
+                            if (SelectedArticle != null)
+                            {
+                                result = DataWorker.DeleteArticle(SelectedArticle.Id);
+                                SelectedArticle = null;
+                            }
+                            break;
+                        case "Categories":
+                            if (SelectedCategory != null)
+                            {
+                                result = DataWorker.DeleteCategory(SelectedCategory.Id);
+                                SelectedCategory = null;
+                            }
+                            break;
+                        case "Tags":
+                            if (SelectedTag != null)
+                            {
+                                result = DataWorker.DeleteTag(SelectedTag.Id);
+                                SelectedTag = null;
+                            }
+                            break;
+                        case "ArticleTags":
+                            if (SelectedArticleTag != null)
+                            {
+                                result = DataWorker.DeleteArticleTag(SelectedArticleTag.Id);
+                                SelectedArticleTag = null;
+                            }
+                            break;
+                        case "Comments":
+                            if (SelectedComment != null)
+                            {
+                                result = DataWorker.DeleteComment(SelectedComment.Id);
+                                SelectedComment = null;
+                            }
+                            break;
+                        case "Users":
+                            if (SelectedUser != null)
+                            {
+                                result = DataWorker.DeleteUser(SelectedUser.Id);
+                                SelectedUser = null;
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                    UpdateListViews.UpdateAllLists();
+                    MessageBox.Show(result);
                 });
             }
         }

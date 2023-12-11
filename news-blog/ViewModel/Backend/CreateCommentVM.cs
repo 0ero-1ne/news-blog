@@ -94,17 +94,9 @@ namespace news_blog.ViewModel.Backend
                     string result = DataWorker.CreateComment(User.Id, Article.Id, Text);
                     window.Close();
                     MessageBox.Show(result);
-                    UpdateComments();
+                    UpdateListViews.UpdateComments();
                 });
             }
-        }
-
-        private void UpdateComments()
-        {
-            AdminPanel.CommentsList!.ItemsSource = null;
-            AdminPanel.CommentsList!.Items.Clear();
-            AdminPanel.CommentsList!.ItemsSource = DataWorker.GetComments();
-            AdminPanel.CommentsList?.Items.Refresh();
         }
     }
 }

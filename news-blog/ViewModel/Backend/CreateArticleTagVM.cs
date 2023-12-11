@@ -77,17 +77,9 @@ namespace news_blog.ViewModel.Backend
                     string result = DataWorker.CreateArticleTag(Article.Id, Tag.Id);
                     window.Close();
                     MessageBox.Show(result);
-                    UpdateArticleTags();
+                    UpdateListViews.UpdateArticleTags();
                 });
             }
-        }
-
-        private void UpdateArticleTags()
-        {
-            AdminPanel.ArticleTagsList!.ItemsSource = null;
-            AdminPanel.ArticleTagsList!.Items.Clear();
-            AdminPanel.ArticleTagsList!.ItemsSource = DataWorker.GetArticleTags();
-            AdminPanel.ArticleTagsList!.Items.Refresh();
         }
     }
 }

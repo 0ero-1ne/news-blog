@@ -38,17 +38,9 @@ namespace news_blog.ViewModel.Backend
                     var result = DataWorker.CreateTag(Tag);
                     window.Close();
                     MessageBox.Show(result);
-                    UpdateTags();
+                    UpdateListViews.UpdateTags();
                 });
             }
-        }
-
-        private void UpdateTags()
-        {
-            AdminPanel.TagsList!.ItemsSource = null;
-            AdminPanel.TagsList.Items.Clear();
-            AdminPanel.TagsList.ItemsSource = DataWorker.GetTags();
-            AdminPanel.TagsList.Items.Refresh();
         }
     }
 }

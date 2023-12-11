@@ -69,17 +69,9 @@ namespace news_blog.ViewModel.Backend
                     var result = DataWorker.CreateUser(Username, Password, false);
                     window.Close();
                     MessageBox.Show(result);
-                    UpdateUsers();
+                    UpdateListViews.UpdateUsers();
                 });
             }
-        }
-
-        private void UpdateUsers()
-        {
-            AdminPanel.UsersList!.ItemsSource = null;
-            AdminPanel.UsersList.Items.Clear();
-            AdminPanel.UsersList.ItemsSource = DataWorker.GetUsers();
-            AdminPanel.UsersList.Items.Refresh();
         }
     }
 }

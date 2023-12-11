@@ -38,17 +38,9 @@ namespace news_blog.ViewModel.Backend
                     var result = DataWorker.CreateCategory(Category);
                     window.Close();
                     MessageBox.Show(result);
-                    UpdateCategories();
+                    UpdateListViews.UpdateCategories();
                 });
             }
-        }
-
-        private void UpdateCategories()
-        {
-            AdminPanel.CategoriesList!.ItemsSource = null;
-            AdminPanel.CategoriesList.Items.Clear();
-            AdminPanel.CategoriesList.ItemsSource = DataWorker.GetCategories();
-            AdminPanel.CategoriesList.Items.Refresh();
         }
     }
 }

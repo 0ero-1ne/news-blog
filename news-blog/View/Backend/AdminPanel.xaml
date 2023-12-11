@@ -17,7 +17,8 @@
         <TabControl
             Grid.Row="0"
             Grid.Column="0"
-            Margin="10, 10, 10, 10">
+            Margin="10, 10, 10, 10"
+            SelectedItem="{Binding SelectedTabItem}">
             <TabItem Name="Articles">
                 <TabItem.Header>
                     <TextBlock 
@@ -25,6 +26,12 @@
                         FontSize="16px"
                         Padding="15,5,15,5"/>
                 </TabItem.Header>
+                <TabItem.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Редактировать статью" />
+                        <MenuItem Header="Удалить статью" Command="{Binding DeleteItem}" />
+                    </ContextMenu>
+                </TabItem.ContextMenu>
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
@@ -38,7 +45,8 @@
                         Padding="10"
                         VerticalAlignment="Top"
                         ItemsSource="{Binding Articles}"
-                        x:Name="ArticlesView">
+                        x:Name="ArticlesView"
+                        SelectedItem="{Binding SelectedArticle}">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn
@@ -96,6 +104,12 @@
                         FontSize="16px"
                         Padding="15,5,15,5"/>
                 </TabItem.Header>
+                <TabItem.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Редактировать категорию" />
+                        <MenuItem Header="Удалить категорию" Command="{Binding DeleteItem}" />
+                    </ContextMenu>
+                </TabItem.ContextMenu>
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
@@ -109,7 +123,8 @@
                         Grid.Row="0"
                         VerticalAlignment="Top"
                         ItemsSource="{Binding Categories}"
-                        x:Name="CategoriesView">
+                        x:Name="CategoriesView"
+                        SelectedItem="{Binding SelectedCategory}">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn
@@ -139,6 +154,12 @@
                         FontSize="16px"
                         Padding="15,5,15,5"/>
                 </TabItem.Header>
+                <TabItem.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Редактировать тег" />
+                        <MenuItem Header="Удалить тег" Command="{Binding DeleteItem}" />
+                    </ContextMenu>
+                </TabItem.ContextMenu>
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
@@ -152,7 +173,8 @@
                         Grid.Row="0"
                         VerticalAlignment="Top"
                         ItemsSource="{Binding Tags}"
-                        x:Name="TagsView">
+                        x:Name="TagsView"
+                        SelectedItem="{Binding SelectedTag}">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn
@@ -182,6 +204,12 @@
                         FontSize="16px"
                         Padding="15,5,15,5"/>
                 </TabItem.Header>
+                <TabItem.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Редактировать привязку" />
+                        <MenuItem Header="Удалить привязку" Command="{Binding DeleteItem}" />
+                    </ContextMenu>
+                </TabItem.ContextMenu>
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
@@ -195,7 +223,8 @@
                         Grid.Row="0"
                         VerticalAlignment="Top"
                         ItemsSource="{Binding ArticleTags}"
-                        x:Name="ArticleTagsView">
+                        x:Name="ArticleTagsView"
+                        SelectedItem="{Binding SelectedArticleTag}">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn
@@ -229,6 +258,12 @@
                         FontSize="16px"
                         Padding="15,5,15,5"/>
                 </TabItem.Header>
+                <TabItem.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Редактировать комментарий" />
+                        <MenuItem Header="Удалить комментарий" Command="{Binding DeleteItem}" />
+                    </ContextMenu>
+                </TabItem.ContextMenu>
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
@@ -242,7 +277,8 @@
                         Grid.Row="0"
                         VerticalAlignment="Top"
                         ItemsSource="{Binding Comments}"
-                        x:Name="CommentsView">
+                        x:Name="CommentsView"
+                        SelectedItem="{Binding SelectedComment}">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn
@@ -280,6 +316,12 @@
                         FontSize="16px"
                         Padding="15,5,15,5"/>
                 </TabItem.Header>
+                <TabItem.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Редактировать пользователя" />
+                        <MenuItem Header="Удалить пользователя" Command="{Binding DeleteItem}" />
+                    </ContextMenu>
+                </TabItem.ContextMenu>
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
@@ -293,7 +335,8 @@
                         Grid.Row="0"
                         VerticalAlignment="Top"
                         ItemsSource="{Binding Users}"
-                        x:Name="UsersView">
+                        x:Name="UsersView"
+                        SelectedItem="{Binding SelectedUser}">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn

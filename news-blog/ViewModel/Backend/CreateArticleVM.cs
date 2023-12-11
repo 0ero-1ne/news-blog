@@ -125,17 +125,9 @@ namespace news_blog.ViewModel.Backend
                     string result = DataWorker.CreateArticle(Title, ShortText, Text, Author.Id, Category.Id);
                     window.Close();
                     MessageBox.Show(result);
-                    UpdateArticles();
+                    UpdateListViews.UpdateArticles();
                 });
             }
-        }
-
-        private void UpdateArticles()
-        {
-            AdminPanel.ArticlesList!.ItemsSource = null;
-            AdminPanel.ArticlesList!.Items.Clear();
-            AdminPanel.ArticlesList!.ItemsSource = DataWorker.GetArticles();
-            AdminPanel.ArticlesList!.Items.Refresh();
         }
     }
 }
