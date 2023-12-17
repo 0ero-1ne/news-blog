@@ -6,16 +6,30 @@
     <RootNamespace>news_blog</RootNamespace>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <UseWindowsForms>False</UseWindowsForms>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Fonts\**" />
+    <EmbeddedResource Remove="Fonts\**" />
+    <None Remove="Fonts\**" />
+    <Page Remove="Fonts\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <None Remove="Images\Icon.ico" />
     <None Remove="Images\Icon.png" />
+    <None Remove="Images\rating.png" />
+    <None Remove="Images\search-icon.png" />
+    <None Remove="Images\star.png" />
+    <None Remove="Images\start_black.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Images\Icon.ico" />
     <Resource Include="Images\Icon.png" />
+    <Resource Include="Images\search-icon.png" />
+    <Resource Include="Images\star.png" />
+    <Resource Include="Images\start_black.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,6 +38,27 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="View\Backend\EditCommentWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Backend\EditArticleWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Backend\EditUserWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Backend\EditCategoryWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Backend\EditTagWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Frontend\RegisterPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 
 </Project>

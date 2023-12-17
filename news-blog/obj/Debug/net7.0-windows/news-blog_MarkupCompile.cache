@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET7_0;NETCOREAPP
 C:\Univer\news-blog\news-blog\App.xaml
-1171929307
+26-313545441
 
-20-937892691
+541375536524
 216-697163304
-MainWindow.xaml;Style\FormLabelStyle.xaml;Style\NewItemBorderButton.xaml;Style\TextBoxBorderStyle.xaml;View\Backend\AdminPanel.xaml;View\Backend\CreateArticleTagWindow.xaml;View\Backend\CreateArticleWindow.xaml;View\Backend\CreateCategoryWindow.xaml;View\Backend\CreateCommentWindow.xaml;View\Backend\CreateTagWindow.xaml;View\Backend\CreateUserWindow.xaml;
+MainWindow.xaml;Style\FormLabelStyle.xaml;Style\HeaderMenuItem.xaml;Style\ItemTemplate.xaml;Style\LogoText.xaml;Style\NewItemBorderButton.xaml;Style\ScrollBarStyle.xaml;Style\SearchFiltersStyles.xaml;Style\TextBoxStyles.xaml;View\Backend\AdminPanel.xaml;View\Backend\CreateArticleTagWindow.xaml;View\Backend\CreateArticleWindow.xaml;View\Backend\CreateCategoryWindow.xaml;View\Backend\CreateCommentWindow.xaml;View\Backend\CreateTagWindow.xaml;View\Backend\CreateUserWindow.xaml;View\Backend\EditArticleWindow.xaml;View\Backend\EditCategoryWindow.xaml;View\Backend\EditCommentWindow.xaml;View\Backend\EditTagWindow.xaml;View\Backend\EditUserWindow.xaml;View\Frontend\ArticlePage.xaml;View\Frontend\FeedbackPage.xaml;View\Frontend\LoginPage.xaml;View\Frontend\MainPage.xaml;View\Frontend\RegisterPage.xaml;
 
 False
 

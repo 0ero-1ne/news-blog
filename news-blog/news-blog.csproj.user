@@ -28,6 +28,18 @@
     <Compile Update="View\Backend\CreateUserWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\Frontend\ArticlePage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Frontend\FeedbackPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Frontend\LoginPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Frontend\MainPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="MainWindow.xaml">
@@ -36,10 +48,25 @@
     <Page Update="Style\FormLabelStyle.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Style\HeaderMenuItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Style\ItemTemplate.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Style\LogoText.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Style\NewItemBorderButton.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Style\TextBoxBorderStyle.xaml">
+    <Page Update="Style\ScrollBarStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Style\SearchFiltersStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Style\TextBoxStyles.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\Backend\AdminPanel.xaml">
@@ -48,7 +75,19 @@
     <Page Update="View\Backend\CreateArticleTagWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="View\Backend\EditCommentWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Backend\EditArticleWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="View\Backend\CreateArticleWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Backend\EditUserWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Backend\EditCategoryWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\Backend\CreateCategoryWindow.xaml">
@@ -57,10 +96,28 @@
     <Page Update="View\Backend\CreateCommentWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="View\Backend\EditTagWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="View\Backend\CreateTagWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\Backend\CreateUserWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Frontend\ArticlePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Frontend\FeedbackPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Frontend\RegisterPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Frontend\LoginPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Frontend\MainPage.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
