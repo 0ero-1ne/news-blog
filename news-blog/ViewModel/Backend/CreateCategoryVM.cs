@@ -41,7 +41,7 @@ namespace news_blog.ViewModel.Backend
                     var result = DataWorker.CreateCategory(Category);
                     UpdateListViews.UpdateCategories();
                     window.Close();
-                    MessageBox.Show(result);
+                    MessageBox.Show(result, "News Blog - Информация", MessageBoxButton.OK);
                 });
             }
         }

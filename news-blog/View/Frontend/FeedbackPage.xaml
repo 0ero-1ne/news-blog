@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="news_blog.View.Frontend.FeedbackPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:news_blog.View.Frontend"
+             mc:Ignorable="d" 
+             d:DesignHeight="640" d:DesignWidth="1200"
+             Background="White">
+    <Grid
+        Margin="15,20">
+        <StackPanel
+            Orientation="Vertical">
+            <Label
+                Content="Обратная связь"
+                Style="{DynamicResource FormLabel}"
+                Margin="0,0,0,40"
+                FontSize="32"
+                HorizontalContentAlignment="Center"/>
+            <TextBlock
+                Width="Auto"
+                FontSize="18"
+                Margin="0,0,0,20"
+                Text="News Blog - это некоммерческий проект, который поможет вам найти самые свежие статьи, которые пишем не только мы, но и наши пользователи."
+                TextWrapping="Wrap"/>
+            <TextBlock
+                Width="Auto"
+                FontSize="18"
+                Margin="0,0,0,20"
+                Text="Для этго мы стараемся поддерживать нилучшее качество нашего проекта. Мы всегда прислушаемся к вашим пожеланиям и замечаниям. Если вам есть, что сказать, то обязательно заполните форму предложений и замечаний."
+                TextWrapping="Wrap"/>
+            <TextBlock
+                Width="Auto"
+                FontSize="18"
+                Margin="0,0,0,20"
+                Text="News Blog - это сообщество единомышленников. Так давайте сделаем его лучше вместе!"
+                TextWrapping="Wrap"/>
+            <Label
+                Content="Ваше предложение"
+                Style="{DynamicResource FormLabel}"
+                Margin="0,0,0,10"
+                FontSize="24"/>
+            <Border
+                Style="{DynamicResource SearchBorder}"
+                Width="450"
+                Height="80"
+                HorizontalAlignment="Left"
+                Margin="0,0,0,30">
+                <TextBox
+                    Height="60"
+                    TextWrapping="Wrap"
+                    Style="{DynamicResource SearchTextBox}"
+                    Text="{Binding FeedbackText}"/>
+            </Border>
+            <Border
+                HorizontalAlignment="Left"
+                Style="{DynamicResource SimpleButtonBorder}">
+                <Button
+                    Content="Отправить"
+                    Command="{Binding SaveFeedback}"
+                    Style="{DynamicResource SimpleButton}"
+                    Template="{DynamicResource NoMouseOverButtonTemplate}" />
+            </Border>
+        </StackPanel>
+    </Grid>
+</UserControl>

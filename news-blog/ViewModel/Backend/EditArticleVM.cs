@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System;
 using System.Text.RegularExpressions;
+using Microsoft.Win32;
 
 namespace news_blog.ViewModel.Backend
 {
@@ -113,6 +114,37 @@ namespace news_blog.ViewModel.Backend
             }
         }
 
+        private string? _imagePath;
+        public string? ImagePath
+        {
+            get => _imagePath;
+            set
+            {
+                _imagePath = value!.Trim();
+                NotifyPropertyChanged(nameof(ImagePath));
+            }
+        }
+
+        private RelayCommand? _openDialog;
+        public RelayCommand? OpenDialog
+        {
+            get
+            {
+                return _openDialog ?? new RelayCommand(obj =>
+                {
+                    OpenFileDialog ofd = new();
+                    ofd.Title = "News Blog - Выберите изображение для статьи";
+                    ofd.Filter = "Portable Network Graphic (*.png)|*.png";
+
+                    ofd.ShowDialog();
+
+                    if (ofd.FileName != "")
+                    {
+                        ImagePath = ofd.FileName;
+                    }
+                });
+            }
+        }
 
         private RelayCommand? saveArticle;
         public RelayCommand SaveArticle
@@ -152,10 +184,15 @@ namespace news_blog.ViewModel.Backend
                         MessageBox.Show("Неверный рейтинг", "News Blog - Информация", MessageBoxButton.OK);
                         return;
                     }
-                    string result = DataWorker.UpdateArticle(_article!.Id, Title, ShortText, Text, Author.Id, Category.Id, Convert.ToInt32(Rating));
+                    if (ImagePath == null || ImagePath == "")
+                    {
+                        MessageBox.Show("Выберите изображение для статьи", "News Blog - Информация", MessageBoxButton.OK);
+                        return;
+                    }
+                    string result = DataWorker.UpdateArticle(_article!.Id, Title, ShortText, Text, Author.Id, Category.Id, Convert.ToInt32(Rating), ImagePath);
                     UpdateListViews.UpdateArticles();
                     window.Close();
-                    MessageBox.Show(result);
+                    MessageBox.Show(result, "News Blog - Информация", MessageBoxButton.OK);
                 });
             }
         }

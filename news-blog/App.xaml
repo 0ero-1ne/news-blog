@@ -1,16 +1,23 @@
 ﻿<Application x:Class="news_blog.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:news_blog"
-             StartupUri="View\Backend\AdminPanel.xaml">
+             xmlns:local="clr-namespace:news_blog">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Style\TextBoxBorderStyle.xaml" />
-                <ResourceDictionary Source="Style\FormLabelStyle.xaml" />
-                <ResourceDictionary Source="Style\NewItemBorderButton.xaml" />
+                <ResourceDictionary>
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="Style\FormLabelStyle.xaml" />
+                        <ResourceDictionary Source="Style\NewItemBorderButton.xaml" />
+                        <ResourceDictionary Source="Style\HeaderMenuItem.xaml" />
+                        <ResourceDictionary Source="Style\LogoText.xaml" />
+                        <ResourceDictionary Source="Style\TextBoxStyles.xaml" />
+                        <ResourceDictionary Source="Style\SearchFiltersStyles.xaml" />
+                        <ResourceDictionary Source="Style\ScrollBarStyle.xaml" />
+                        <ResourceDictionary Source="Style\ItemTemplate.xaml" />
+                    </ResourceDictionary.MergedDictionaries>
+                </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
-
 </Application>

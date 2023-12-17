@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:news_blog.View.Backend"
         mc:Ignorable="d"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
-        Title="News Blog - Новая статья" Height="700" Width="500"
+        Title="News Blog - Новая статья" Height="750" Width="500"
         Icon="pack://application:,,,/Images/Icon.png"
         Name="CreateArticleWnd">
     <Grid>
@@ -29,7 +29,7 @@
             </Border>
             <Label
                 Padding="10,10,10,0"
-                Content="Приветственынй текст"
+                Content="Приветственный текст"
                 Style="{DynamicResource FormLabel}"/>
             <Border
                 Margin="10"
@@ -74,6 +74,24 @@
                 SelectedItem="{Binding Author}"
                 MaxDropDownHeight="150">
             </ComboBox>
+            <Label
+                Padding="10,10,10,0"
+                Content="Изображение"
+                Style="{DynamicResource FormLabel}"/>
+            <Border
+                Grid.Row="1"
+                Margin="10"
+                Width="150"
+                HorizontalAlignment="Left">
+                <Button
+                    Content="Обзор"
+                    Style="{DynamicResource NewItemButton}"
+                    Command="{Binding OpenDialog}"
+                    Padding="5"/>
+            </Border>
+            <TextBlock
+                Text="{Binding ImagePath}"
+                Margin="10,0,10,10"/>
         </StackPanel>
         <Border
             Grid.Row="1"

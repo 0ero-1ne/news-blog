@@ -1,13 +1,11 @@
 ﻿using news_blog.Context;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.Design;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
+using System.Windows;
 
 namespace news_blog.Model
 {
@@ -325,7 +323,7 @@ namespace news_blog.Model
             string result = "Не удалось привязать тег к статье";
             using (var db = new ApplicationContext())
             {
-                bool isArticleTagExists = db.ArticleTags.Any(articleTag => articleTag.Id == ArticleId && articleTag.TagId == TagId);
+                bool isArticleTagExists = db.ArticleTags.Any(articleTag => articleTag.ArticleId == ArticleId && articleTag.TagId == TagId);
                 if (!isArticleTagExists)
                 {
                     ArticleTag articleTag = new() { ArticleId = ArticleId, TagId = TagId };
@@ -380,7 +378,7 @@ namespace news_blog.Model
             }
         }
 
-        public static string CreateArticle(string? Title, string? ShortText, string? Text, int AuthorId, int CategoryId)
+        public static string CreateArticle(string? Title, string? ShortText, string? Text, int AuthorId, int CategoryId, string? ImagePath)
         {
             string result = "Не удалось создать новую статью";
             using (var db = new ApplicationContext())
@@ -399,8 +397,23 @@ namespace news_blog.Model
                         Updated = DateTime.Now,
                         Rating = 0
                     };
+
+                    article.Image = "article-" + article.Id;
                     db.Articles.Add(article);
                     db.SaveChanges();
+
+                    article = GetArticles().Last();
+                    int lastId = article.Id;
+                    article.Image = "article-" + lastId.ToString();
+
+                    if (File.Exists(@"..\..\..\Images\article-" + (lastId) + ".png"))
+                        File.Delete(@"..\..\..\Images\article-" + (lastId) + ".png");
+
+                    File.Copy(ImagePath!, @"..\..\..\Images\article-" + (lastId) + ".png");
+
+                    db.Articles.Where(a => a.Id == lastId).ToList().ForEach(i => i.Image = "article-" + lastId);
+                    db.SaveChanges();
+                    
                     result = "Статья успешно создана";
                 }
             }
@@ -415,7 +428,8 @@ namespace news_blog.Model
             string? Text,
             int AuthorId,
             int CategoryId,
-            int Rating
+            int Rating,
+            string? ImagePath
         )
         {
             string result = "Не удалось обновить статью";
@@ -425,7 +439,7 @@ namespace news_blog.Model
                 bool isArticleExists = false;
 
                 foreach (var a in GetArticles())
-                    if (a.Title!.ToLower() == Title!.ToLower())
+                    if (a.Title!.ToLower() == Title!.ToLower() && ArticleId != a.Id)
                         isArticleExists = true;
 
                 if (article != null)
@@ -442,6 +456,12 @@ namespace news_blog.Model
                     article.CategoryId = CategoryId;
                     article.Updated = DateTime.Now;
                     article.Rating = Rating;
+
+                    if (File.Exists(@"..\..\..\Images\article-" + (ArticleId) + ".png"))
+                        File.Delete(@"..\..\..\Images\article-" + (ArticleId) + ".png");
+
+                    File.Copy(ImagePath!, @"..\..\..\Images\article-" + (ArticleId) + ".png");
+
                     db.SaveChanges();
                     result = "Статья успешно обновлена";
                 }
@@ -469,10 +489,118 @@ namespace news_blog.Model
                     }
                     db.Articles.Remove(article);
                     db.SaveChanges();
+
+                    if (File.Exists(@"..\..\..\Images\article-" + (ArticleId) + ".png"))
+                        File.Delete(@"..\..\..\Images\article-" + (ArticleId) + ".png");
+
                     result = "Статья успешно удалена";
                 }
             }
             return result;
+        }
+
+        // ----- Feedbacks Create
+
+        public static string CreateFeedback(string? Message)
+        {
+            string result = "Не удалось отправить ваше предложение";
+
+            using (var db = new ApplicationContext())
+            {
+                Feedback feedback = new()
+                { 
+                    Message = Message
+                };
+                db.Feedbacks.Add(feedback);
+                db.SaveChanges();
+                result = "Ваше сообщение успешно доставлено. Спасибо за вашу помощь в улучшении проекта!";
+            }
+
+            return result;
+        }
+
+        // ----- Get Articles By Templates -----
+        public static IEnumerable<ArticleTemplate> GetArticlesByTemplate()
+        {
+            using (var db = new ApplicationContext())
+            {
+                List<ArticleTemplate> articles = new();
+                
+                var Articles = GetArticles();
+                var ArticleTags = GetArticleTags();
+                var appPath = AppDomain.CurrentDomain.BaseDirectory;
+
+                Articles.ForEach(article =>
+                {
+                    var at = ArticleTags.Where(articleTag => articleTag.ArticleId == article.Id).Select(articleTag => articleTag.TagId);
+                    List<string> t = GetTags().Where(tag => at.Contains(tag.Id)).Select(tag => tag.Title).ToList()!;
+
+                    var a = new ArticleTemplate(
+                        article.Id,
+                        article.Title,
+                        GetCategories().Single(category => category.Id == article.CategoryId).Title,
+                        "Автор: " + GetUsers().Single(user => user.Id == article.AuthorId).Username,
+                        appPath.Substring(0, appPath.IndexOf("bin")) + @"\Images\article-" + article.Id + ".png",
+                        article.Rating,
+                        t
+                    );
+                    articles.Add(a);
+                });
+
+                return articles;
+            }
+        }
+
+        public static object GetArticlesById(int ArticleId)
+        {
+            using (var db = new ApplicationContext())
+            {
+                var article = GetArticles().Single(article => article.Id == ArticleId);
+                var ArticleTags = GetArticleTags();
+                var appPath = AppDomain.CurrentDomain.BaseDirectory;
+
+                var tags = "";
+                var at = ArticleTags.Where(articleTag => articleTag.ArticleId == article.Id).Select(articleTag => articleTag.TagId);
+                var t = GetTags().Where(tag => at.Contains(tag.Id)).Select(tag => tag.Title).ToList();
+                t.ForEach(tag => tags += tag + ", ");
+
+                var obj = new
+                {
+                    article.Id,
+                    article.Title,
+                    article.Text,
+                    article.ShortText,
+                    Created = "Дата создания: " + article.Created.ToString().Substring(0, article.Created.ToString().IndexOf(" ")),
+                    Image = appPath.Substring(0, appPath.IndexOf("bin")) + @"\Images\article-" + article.Id + ".png",
+                    Author = "Автор: " + GetUsers().Single(user => user.Id == article.AuthorId).Username,
+                    article.Rating,
+                    Tags = tags.Substring(0, tags.LastIndexOf(",")),
+                    Category = GetCategories().Single(category => category.Id == article.CategoryId).Title
+                };
+
+                return obj;
+            }
+        }
+
+        public static List<object> GetArticleComments(int ArticleId)
+        {
+            using (var db = new ApplicationContext())
+            {
+                var Comments = GetComments().Where(comment => comment.ArticleId == ArticleId).ToList();
+
+                List<object> comments = new();
+                Comments.ForEach(comment =>
+                {
+                    var obj = new
+                    {
+                        comment.Text,
+                        Author = comment.UserId == 0 ? "Гость" : GetUsers().Single(user => user.Id == comment.UserId).Username
+                    };
+                    comments.Add(obj);
+                });
+
+                return comments;
+            }
         }
     }
 }

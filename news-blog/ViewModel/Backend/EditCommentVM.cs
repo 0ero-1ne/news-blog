@@ -103,7 +103,7 @@ namespace news_blog.ViewModel.Backend
                     string result = DataWorker.UpdateComment(_comment!.Id, User.Id, Article.Id, Text);
                     UpdateListViews.UpdateComments();
                     window.Close();
-                    MessageBox.Show(result);
+                    MessageBox.Show(result, "News Blog - Информация", MessageBoxButton.OK);
                 });
             }
         }

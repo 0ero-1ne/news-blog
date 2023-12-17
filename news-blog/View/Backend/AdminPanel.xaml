@@ -85,6 +85,10 @@
                                     Header="Rating"
                                     Width="100"
                                     DisplayMemberBinding="{Binding Path=Rating}"/>
+                                <GridViewColumn
+                                    Header="Image"
+                                    Width="100"
+                                    DisplayMemberBinding="{Binding Path=Image}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>

@@ -22,4 +22,38 @@
         <Setter Property="Height" Value="35" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
     </Style>
+    <Style x:Key="SimpleButtonBorder" TargetType="Border">
+        <Setter Property="Height" Value="50px" />
+        <Setter Property="Width" Value="170px" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="CornerRadius" Value="20" />
+        <Setter Property="Background" Value="Black" />
+        <Setter Property="Cursor" Value="Hand" />
+    </Style>
+    <Style x:Key="SimpleButton" TargetType="Button">
+        <Setter Property="Width" Value="148" />
+        <Setter Property="Height" Value="38" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="FontSize" Value="24" />
+        <Setter Property="Background" Value="Black" />
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+    <ControlTemplate x:Key="NoMouseOverButtonTemplate" TargetType="Button">
+        <Border Background="{TemplateBinding Background}"  
+          BorderBrush="{TemplateBinding BorderBrush}"  
+          BorderThickness="{TemplateBinding BorderThickness}">
+            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"  
+                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+        </Border>
+
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled"  
+             Value="False">
+                <Setter Property="Background"  
+              Value="{x:Static SystemColors.ControlLightBrush}" />
+                <Setter Property="Foreground"  
+              Value="{x:Static SystemColors.GrayTextBrush}" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
 </ResourceDictionary>

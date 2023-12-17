@@ -58,7 +58,7 @@ namespace news_blog.ViewModel.Backend
                     var result = DataWorker.CreateUser(Username, Password, false);
                     UpdateListViews.UpdateUsers();
                     window.Close();
-                    MessageBox.Show(result);
+                    MessageBox.Show(result, "News Blog - Информация", MessageBoxButton.OK);
                 });
             }
         }

@@ -17,6 +17,8 @@ namespace news_blog.Context
 
         public DbSet<Comment> Comments { get; set; }
 
+        public DbSet<Feedback> Feedbacks { get; set; }
+
         public ApplicationContext()
         {
             Database.EnsureCreated();

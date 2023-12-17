@@ -49,7 +49,7 @@ namespace news_blog.ViewModel.Backend
                     var result = DataWorker.UpdateCategory(category!.Id, Title);
                     UpdateListViews.UpdateCategories();
                     window.Close();
-                    MessageBox.Show(result);
+                    MessageBox.Show(result, "News Blog - Информация", MessageBoxButton.OK);
                 });
             }
         }

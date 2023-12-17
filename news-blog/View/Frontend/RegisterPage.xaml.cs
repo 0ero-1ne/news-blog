@@ -1,6 +1,4 @@
-﻿using news_blog.Model;
-using news_blog.View;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace news_blog
+namespace news_blog.View.Frontend
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for LoginPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class RegisterPage : UserControl
     {
-        public MainWindow()
+        public RegisterPage()
         {
             InitializeComponent();
         }

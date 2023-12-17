@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace news_blog.Model
 {
@@ -21,5 +22,7 @@ namespace news_blog.Model
         public DateTime Updated { get; set; }
 
         public int Rating { get; set; }
+
+        public string? Image { get; set; }
     }
 }

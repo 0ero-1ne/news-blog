@@ -77,7 +77,7 @@ namespace news_blog.ViewModel.Backend
                     string result = DataWorker.CreateArticleTag(Article.Id, Tag.Id);
                     UpdateListViews.UpdateArticleTags();
                     window.Close();
-                    MessageBox.Show(result);
+                    MessageBox.Show(result, "News Blog - Информация", MessageBoxButton.OK);
                 });
             }
         }
