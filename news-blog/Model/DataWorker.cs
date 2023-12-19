@@ -6,6 +6,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows;
+using System.Windows.Media.Imaging;
 
 namespace news_blog.Model
 {
@@ -406,10 +407,15 @@ namespace news_blog.Model
                     int lastId = article.Id;
                     article.Image = "article-" + lastId.ToString();
 
-                    if (File.Exists(@"..\..\..\Images\article-" + (lastId) + ".png"))
-                        File.Delete(@"..\..\..\Images\article-" + (lastId) + ".png");
+                    var appPath = AppDomain.CurrentDomain.BaseDirectory;
+                    var dir = appPath.Substring(0, appPath.IndexOf("bin")) + @"\Images\";
 
-                    File.Copy(ImagePath!, @"..\..\..\Images\article-" + (lastId) + ".png");
+                    if (File.Exists(dir + article.Image + ".png"))
+                    {
+                        File.Delete(dir + article.Image + ".png");
+                    }
+
+                    File.Copy(ImagePath!, dir + article.Image + ".png");
 
                     db.Articles.Where(a => a.Id == lastId).ToList().ForEach(i => i.Image = "article-" + lastId);
                     db.SaveChanges();
@@ -457,10 +463,24 @@ namespace news_blog.Model
                     article.Updated = DateTime.Now;
                     article.Rating = Rating;
 
-                    if (File.Exists(@"..\..\..\Images\article-" + (ArticleId) + ".png"))
-                        File.Delete(@"..\..\..\Images\article-" + (ArticleId) + ".png");
+                    var appPath = AppDomain.CurrentDomain.BaseDirectory;
+                    var dir = appPath.Substring(0, appPath.IndexOf("bin")) + @"\Images\";
 
-                    File.Copy(ImagePath!, @"..\..\..\Images\article-" + (ArticleId) + ".png");
+                    if (ImagePath == article.Image)
+                    {
+                        db.SaveChanges();
+                        result = "Статья успешно обновлена";
+                    }
+                    else if (!ImagePath!.Contains(article.Image + @".png"))
+                    {
+                        if (File.Exists(dir + article.Image + @".png"))
+                        {
+                            File.Delete(dir + article.Image + @".png");
+                        }
+
+                        File.Copy(ImagePath!, dir + article.Image + @".png");
+                        db.SaveChanges();
+                    }
 
                     db.SaveChanges();
                     result = "Статья успешно обновлена";
@@ -490,9 +510,6 @@ namespace news_blog.Model
                     db.Articles.Remove(article);
                     db.SaveChanges();
 
-                    if (File.Exists(@"..\..\..\Images\article-" + (ArticleId) + ".png"))
-                        File.Delete(@"..\..\..\Images\article-" + (ArticleId) + ".png");
-
                     result = "Статья успешно удалена";
                 }
             }
@@ -517,6 +534,60 @@ namespace news_blog.Model
             }
 
             return result;
+        }
+
+        // ----- Ratings CRD -----
+
+        public static IEnumerable<Rating> GetRatings()
+        {
+            using (var db = new ApplicationContext())
+            {
+                return db.Ratings.ToList();
+            }
+        }
+
+        public static bool CreateRating(int ArticleId, int UserId)
+        {
+            using (var db = new ApplicationContext())
+            {
+                bool isRatingExists = db.Ratings.Any(rating => rating.ArticleId == ArticleId && rating.UserId == UserId);
+
+                if (!isRatingExists)
+                {
+                    Rating rating = new()
+                    {
+                        ArticleId = ArticleId,
+                        UserId = UserId
+                    };
+
+                    db.Ratings.Add(rating);
+                    db.SaveChanges();
+
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public static bool DeleteRating(int ArticleId, int UserId)
+        {
+            using (var db = new ApplicationContext())
+            {
+                bool isRatingExists = db.Ratings.Any(rating => rating.ArticleId == ArticleId && rating.UserId == UserId);
+
+                if (isRatingExists)
+                {
+                    Rating rating = db.Ratings.Single(rating => rating.ArticleId == ArticleId && rating.UserId == UserId);
+
+                    db.Ratings.Remove(rating);
+                    db.SaveChanges();
+
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         // ----- Get Articles By Templates -----
@@ -564,6 +635,12 @@ namespace news_blog.Model
                 var t = GetTags().Where(tag => at.Contains(tag.Id)).Select(tag => tag.Title).ToList();
                 t.ForEach(tag => tags += tag + ", ");
 
+                BitmapImage _image = new BitmapImage();
+                _image.BeginInit();
+                _image.CacheOption = BitmapCacheOption.OnLoad;
+                _image.UriSource = new Uri(appPath.Substring(0, appPath.IndexOf("bin")) + @"\Images\article-" + article.Id + ".png");
+                _image.EndInit();
+
                 var obj = new
                 {
                     article.Id,
@@ -571,7 +648,7 @@ namespace news_blog.Model
                     article.Text,
                     article.ShortText,
                     Created = "Дата создания: " + article.Created.ToString().Substring(0, article.Created.ToString().IndexOf(" ")),
-                    Image = appPath.Substring(0, appPath.IndexOf("bin")) + @"\Images\article-" + article.Id + ".png",
+                    Image = _image,
                     Author = "Автор: " + GetUsers().Single(user => user.Id == article.AuthorId).Username,
                     article.Rating,
                     Tags = tags.Substring(0, tags.LastIndexOf(",")),
@@ -600,6 +677,26 @@ namespace news_blog.Model
                 });
 
                 return comments;
+            }
+        }
+
+        public static void ClearUnusedImages()
+        {
+            var appPath = AppDomain.CurrentDomain.BaseDirectory;
+            var dir = appPath.Substring(0, appPath.IndexOf("bin")) + @"\Images";
+
+            List<string> files = Directory.GetFiles(dir).Select(f => Path.GetFileName(f)).ToList();
+            List<string> articlesImages = GetArticles().Select(article => article.Image + ".png").ToList()!;
+            
+            foreach (var file in files)
+            {
+                if (file.Contains("article"))
+                {
+                    if (!articlesImages.Contains(file))
+                    {
+                        File.Delete(dir + @"\" + file);
+                    }
+                }
             }
         }
     }

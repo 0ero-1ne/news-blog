@@ -1,3 +1,4 @@
 /.vs
 database-structure.txt
 /news-blog/obj
+/news-blog/Images/article*.png

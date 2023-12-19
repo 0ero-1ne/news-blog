@@ -13,11 +13,13 @@ namespace news_blog.Context
         
         public DbSet<Article> Articles { get; set; }
         
-        public DbSet<ArticleTag> ArticleTags { get; set; }
+        public DbSet<ArticleTag> ArticleTags { get; set; } 
 
         public DbSet<Comment> Comments { get; set; }
 
         public DbSet<Feedback> Feedbacks { get; set; }
+
+        public DbSet<Rating> Ratings { get; set; }
 
         public ApplicationContext()
         {

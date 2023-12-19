@@ -5,6 +5,7 @@ using news_blog.ViewModel.Frontend;
 using news_blog.Model;
 using System.Globalization;
 using System.Windows;
+using System.Linq;
 
 namespace news_blog
 {

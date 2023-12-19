@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
+using System.Windows.Media.Imaging;
 
 namespace news_blog.Model
 {
@@ -13,9 +12,9 @@ namespace news_blog.Model
         public string? Category { get; set; }
         public string? Author { get; set; }
         public int Rating { get; set; }
-        public List<String>? Tags { get; set; }
+        public List<string>? Tags { get; set; }
         public string? TagsString { get; set; }
-        public string? Image { get; set; }
+        public BitmapImage? Image { get; set; }
 
         public ArticleTemplate
         (
@@ -25,7 +24,7 @@ namespace news_blog.Model
             string? author,
             string? image,
             int rating,
-            List<String>? tags
+            List<string>? tags
         )
         {
             Id = id;
@@ -34,7 +33,7 @@ namespace news_blog.Model
             Author = author;
             Rating = rating;
             Tags = tags;
-            Image = image;
+            setBitmapImage(image);
             setTagsString();
         }
 
@@ -44,6 +43,19 @@ namespace news_blog.Model
             Tags!.ForEach(tag => tags += tag + ", ");
             tags = tags.Substring(0, tags.LastIndexOf(","));
             TagsString = tags;
+        }
+
+        private void setBitmapImage(string? image)
+        {
+            using (var fileStream = new FileStream(image!, FileMode.Open, FileAccess.Read))
+            {
+                BitmapImage _image = new BitmapImage();
+                _image.BeginInit();
+                _image.CacheOption = BitmapCacheOption.OnLoad;
+                _image.StreamSource = fileStream;
+                _image.EndInit();
+                Image = _image;
+            }
         }
     }
 }
