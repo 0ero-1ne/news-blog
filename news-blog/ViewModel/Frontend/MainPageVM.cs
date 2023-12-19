@@ -19,7 +19,7 @@ namespace news_blog.ViewModel.Frontend
         private List<string> categoriesFilters = new();
         private List<string> tagsFilters = new();
         public ViewModelBase CurrentViewModel => _navigationStore.CurrentViewModel;
-        public User CurrentUser => _userStore.CurrentUser;
+        public User CurrentUser => _userStore.CurrentUser!;
 
         public IEnumerable<ArticleTemplate> Articles { get; set; }
 
@@ -46,7 +46,7 @@ namespace news_blog.ViewModel.Frontend
                 return openArticlePage ?? new RelayCommand(obj =>
                 {
                     int articleId = (int)obj;
-                    _navigationStore.CurrentViewModel = new ArticlePageVM(articleId, _navigationStore, _userStore);
+                    _navigationStore.CurrentViewModel = new ArticlePageVM(articleId, _navigationStore, _userStore, "Main");
                 });
             }
         }
@@ -57,12 +57,6 @@ namespace news_blog.ViewModel.Frontend
             get
             {
                 return searchArticles ?? new RelayCommand(obj => {
-                    if (SearchString == "")
-                    {
-                        MessageBox.Show("Заполните поле поиска", "News Blog - Информация", MessageBoxButton.OK);
-                        return;
-                    }
-
                     Articles = Articles.Where(article => article.Title!.ToLower().Contains(SearchString!.ToLower()));
                     NotifyPropertyChanged(nameof(Articles));
                 });

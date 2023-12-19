@@ -14,51 +14,61 @@
             <Label
                 Content="Авторизация"
                 Style="{DynamicResource FormLabel}"
-                Margin="0,0,0,40"
+                Margin="0,0,0,60"
                 FontSize="32"
                 HorizontalContentAlignment="Center"/>
-            <Label
-                Content="Имя пользователя"
-                Style="{DynamicResource FormLabel}"
-                Margin="0,0,0,5"
-                FontSize="24"/>
-            <Border
-                Style="{DynamicResource SearchBorder}"
-                Width="350"
-                HorizontalAlignment="Left"
-                Margin="0,0,0,30">
-                <TextBox
-                    Style="{DynamicResource SearchTextBox}"/>
-            </Border>
-            <Label
-                Content="Пароль"
-                Style="{DynamicResource FormLabel}"
-                Margin="0,0,0,5"
-                FontSize="24"/>
-            <Border
-                Style="{DynamicResource SearchBorder}"
-                Width="350"
-                HorizontalAlignment="Left"
-                Margin="0,0,0,30">
-                <PasswordBox
-                    Style="{DynamicResource PasswordBox}"/>
-            </Border>
-            <TextBlock
-                Text="Нет аккаунта? Зарегистрируйтесь"
-                Style="{DynamicResource LoginRegisterLink}">
-                <TextBlock.InputBindings>
-                    <MouseBinding Command="{Binding OpenRegisterPage}" MouseAction="LeftClick" />
-                </TextBlock.InputBindings>
-            </TextBlock>
-            <Border
-                Margin="0,20,0,0"
-                HorizontalAlignment="Left"
-                Style="{DynamicResource SimpleButtonBorder}">
-                <Button
-                    Content="Войти"
-                    Style="{DynamicResource SimpleButton}"
-                    Template="{DynamicResource NoMouseOverButtonTemplate}" />
-            </Border>
+            <StackPanel
+                Orientation="Vertical"
+                Width="Auto"
+                HorizontalAlignment="Center">
+                <Label
+                    Content="Имя пользователя"
+                    Style="{DynamicResource FormLabel}"
+                    Margin="0,0,0,5"
+                    FontSize="24"/>
+                <Border
+                    Style="{DynamicResource SearchBorder}"
+                    Width="350"
+                    HorizontalAlignment="Left"
+                    Margin="0,0,0,30">
+                    <TextBox
+                        Text="{Binding Username}"
+                        Style="{DynamicResource SearchTextBox}"/>
+                </Border>
+                <Label
+                    Content="Пароль"
+                    Style="{DynamicResource FormLabel}"
+                    Margin="0,0,0,5"
+                    FontSize="24"/>
+                <Border
+                    Style="{DynamicResource SearchBorder}"
+                    Width="350"
+                    HorizontalAlignment="Left"
+                    Margin="0,0,0,30">
+                    <PasswordBox
+                        Style="{DynamicResource PasswordBox}"
+                        PasswordChanged="PasswordChangedEvent"/>
+                </Border>
+                <TextBlock
+                    Text="Нет аккаунта? Зарегистрируйтесь"
+                    Style="{DynamicResource LoginRegisterLink}">
+                    <TextBlock.InputBindings>
+                        <MouseBinding Command="{Binding OpenRegisterPage}" MouseAction="LeftClick" />
+                    </TextBlock.InputBindings>
+                </TextBlock>
+                <Border
+                    Margin="0,20,0,0"
+                    Width="350"
+                    HorizontalAlignment="Left"
+                    Style="{DynamicResource SimpleButtonBorder}">
+                    <Button
+                        Content="Войти"
+                        Width="330"
+                        Style="{DynamicResource SimpleButton}"
+                        Template="{DynamicResource NoMouseOverButtonTemplate}"
+                        Command="{Binding LoginUser}" />
+                </Border>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </UserControl>

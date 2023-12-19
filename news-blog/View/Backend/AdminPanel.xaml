@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:news_blog.View"
         mc:Ignorable="d"
         Icon="pack://application:,,,/Images/Icon.png"
-        Title="News Blog - Панель администратора" Height="600" Width="1000">
+        Title="News Blog - Панель администратора" Height="600" Width="1000"
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>

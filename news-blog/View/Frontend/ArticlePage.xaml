@@ -19,8 +19,13 @@
             <Image
                 Height="300"
                 Width="300"
-                Margin="0,0,0,30"
+                Margin="0,0,0,20"
                 Source="{Binding Path=Article.Image}" />
+            <Label
+                FontSize="20"
+                Content="Комментарий"
+                Margin="0,0,0,10"
+                Style="{DynamicResource FormLabel}"/>
             <Border
                 HorizontalAlignment="Left"
                 Style="{DynamicResource SearchBorder}">
@@ -29,31 +34,56 @@
                     TextWrapping="Wrap"
                     HorizontalAlignment="Left"
                     Style="{DynamicResource SearchTextBox}"
-                    Text="Комментарий"/>
+                    Text="{Binding Comment}"/>
             </Border>
             <Border
                 Margin="0,20,0,0"
                 HorizontalAlignment="Left"
                 Style="{DynamicResource SimpleButtonBorder}"
-                Width="200">
+                Width="300">
                 <Button
                     Content="Сохранить"
                     Style="{DynamicResource SimpleButton}"
+                    Command="{Binding SaveComment}"
+                    CommandParameter="{Binding Path=Article.Id}"
                     Template="{DynamicResource NoMouseOverButtonTemplate}"
-                    Width="180"/>
+                    Width="280"/>
             </Border>
             <StackPanel
-                Margin="0,20"
+                Margin="0,15"
                 Orientation="Horizontal">
-                <Image
-                    Width="35"
-                    Height="35"
-                    Source="../../../Images/star.png"/>
+                <Button
+                    Width="50"
+                    Height="50"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Background="White"
+                    BorderThickness="0"
+                    Template="{DynamicResource NoMouseOverButtonTemplate}"
+                    Command="{Binding RateArticle}"
+                    CommandParameter="{Binding Path=Article.Id}">
+                    <Image
+                        Source="{Binding RatingImage}"
+                        Cursor="Hand"/>
+                </Button>
                 <TextBlock
                     Margin="10, 0"
                     FontSize="18"
                     VerticalAlignment="Center"
                     Text="{Binding Path=Article.Rating}"/>
+                <Button
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Command="{Binding BackPage}"
+                    Width="40"
+                    Height="40"
+                    Margin="190,0,0,0"
+                    HorizontalAlignment="Center"
+                    Cursor="Hand"
+                    Template="{DynamicResource NoMouseOverButtonTemplate}">
+                    <Image
+                        Source="../../../Images/back_arrow.png"/>
+                </Button>
             </StackPanel>
         </StackPanel>
         <ScrollViewer

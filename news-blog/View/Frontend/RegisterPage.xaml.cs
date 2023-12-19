@@ -24,5 +24,13 @@ namespace news_blog.View.Frontend
         {
             InitializeComponent();
         }
+
+        private void PasswordChangedEvent(object sender, RoutedEventArgs e)
+        {
+            if (this.DataContext != null)
+            {
+                ((dynamic)this.DataContext).Password = ((PasswordBox)sender).Password;
+            }
+        }
     }
 }

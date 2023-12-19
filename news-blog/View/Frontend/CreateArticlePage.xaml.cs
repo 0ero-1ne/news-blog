@@ -16,21 +16,13 @@ using System.Windows.Shapes;
 namespace news_blog.View.Frontend
 {
     /// <summary>
-    /// Interaction logic for LoginPage.xaml
+    /// Interaction logic for CreateArticlePage.xaml
     /// </summary>
-    public partial class LoginPage : UserControl
+    public partial class CreateArticlePage : UserControl
     {
-        public LoginPage()
+        public CreateArticlePage()
         {
             InitializeComponent();
-        }
-
-        private void PasswordChangedEvent(object sender, RoutedEventArgs e)
-        {
-            if (this.DataContext != null)
-            {
-                ((dynamic)this.DataContext).Password = ((PasswordBox)sender).Password;
-            }
         }
     }
 }

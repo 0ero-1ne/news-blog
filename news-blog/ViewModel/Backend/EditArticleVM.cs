@@ -24,6 +24,7 @@ namespace news_blog.ViewModel.Backend
             Rating = _article!.Rating!.ToString();
             Author = Users.First(user => user.Id == _article.AuthorId);
             Category = Categories.First(category => category.Id == _article.CategoryId);
+            ImagePath = _article.Image;
         }
 
         private List<Category> _categories = DataWorker.GetCategories();

@@ -17,7 +17,7 @@ namespace news_blog.ViewModel.Frontend
         public ViewModelBase CurrentViewModel => _navigationStore.CurrentViewModel;
         public User CurrentUser => _userStore.CurrentUser;
 
-        private string? feedbackText = "Ваше предложение...";
+        private string? feedbackText;
         public string? FeedbackText
         {
             get => feedbackText;

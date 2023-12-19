@@ -15,6 +15,7 @@ namespace news_blog.ViewModel.Backend
 {
     public class AdminPanelVM : ViewModelBase
     {
+        private string? _adminUsername;
         private List<Article> _articles = DataWorker.GetArticles();
         public List<Article> Articles
         {
@@ -70,7 +71,7 @@ namespace news_blog.ViewModel.Backend
             }
         }
 
-        private List<User> _users = DataWorker.GetUsers();
+        private List<User> _users = DataWorker.GetUsers().Where(user => user.IsAdmin == 0).Where(user => user.Id != 0).ToList();
         public List<User> Users
         {
             get => _users;

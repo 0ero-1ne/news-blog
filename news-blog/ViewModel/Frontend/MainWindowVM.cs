@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace news_blog.ViewModel.Frontend
 {
@@ -14,17 +15,22 @@ namespace news_blog.ViewModel.Frontend
         private readonly NavigationStore _navigationStore;
         private readonly UserStore _userStore;
         public ViewModelBase CurrentViewModel => _navigationStore.CurrentViewModel;
-        public User CurrentUser => _userStore.CurrentUser;
+        public User CurrentUser => _userStore.CurrentUser!;
 
-        private RelayCommand? openLoginPage;
-        public RelayCommand? OpenLoginPage
+        private RelayCommand? openProfileLoginPage;
+        public RelayCommand? OpenProfileLoginPage
         {
             get
             {
-                return openLoginPage ?? new RelayCommand(obj =>
+                return openProfileLoginPage ?? new RelayCommand(obj =>
                 {
+                    if (CurrentUser != null)
+                    {
+                        _navigationStore.CurrentViewModel = new ProfilePageVM(_navigationStore, _userStore);
+                        return;
+                    }
                     _navigationStore.CurrentViewModel = new LoginPageVM(_navigationStore, _userStore);
-                });
+                }); 
             }
         }
 
@@ -57,6 +63,7 @@ namespace news_blog.ViewModel.Frontend
         {
             _navigationStore = navigationStore;
             _userStore = userStore;
+            DataWorker.ClearUnusedImages();
             _navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
             _userStore.CurrentUserChanged += OnCurrentUserChanged;
         }
