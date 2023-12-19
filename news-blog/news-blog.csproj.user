@@ -31,6 +31,12 @@
     <Compile Update="View\Frontend\ArticlePage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\Frontend\CreateArticlePage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Frontend\EditArticlePage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\Frontend\FeedbackPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -38,6 +44,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\Frontend\MainPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Frontend\ProfilePage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -108,7 +117,16 @@
     <Page Update="View\Frontend\ArticlePage.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="View\Frontend\CreateArticlePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Frontend\EditArticlePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="View\Frontend\FeedbackPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\Frontend\ProfilePage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\Frontend\RegisterPage.xaml">

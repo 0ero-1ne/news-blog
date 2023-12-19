@@ -61,7 +61,7 @@ namespace news_blog.View.Backend {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/news-blog;V1.0.0.0;component/view/backend/createcategorywindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/news-blog;component/view/backend/createcategorywindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\View\Backend\CreateCategoryWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

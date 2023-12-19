@@ -1,4 +1,4 @@
-﻿C:\Univer\news-blog\news-blog\obj\Debug\net7.0-windows\GeneratedInternalTypeHelper.g.cs
+﻿
 FC:\Univer\news-blog\news-blog\App.xaml;;
 FC:\Univer\news-blog\news-blog\MainWindow.xaml;;
 FC:\Univer\news-blog\news-blog\View\Backend\AdminPanel.xaml;;
@@ -14,8 +14,11 @@ FC:\Univer\news-blog\news-blog\View\Backend\EditCommentWindow.xaml;;
 FC:\Univer\news-blog\news-blog\View\Backend\EditTagWindow.xaml;;
 FC:\Univer\news-blog\news-blog\View\Backend\EditUserWindow.xaml;;
 FC:\Univer\news-blog\news-blog\View\Frontend\ArticlePage.xaml;;
+FC:\Univer\news-blog\news-blog\View\Frontend\CreateArticlePage.xaml;;
 FC:\Univer\news-blog\news-blog\View\Frontend\FeedbackPage.xaml;;
 FC:\Univer\news-blog\news-blog\View\Frontend\LoginPage.xaml;;
 FC:\Univer\news-blog\news-blog\View\Frontend\MainPage.xaml;;
+FC:\Univer\news-blog\news-blog\View\Frontend\ProfilePage.xaml;;
 FC:\Univer\news-blog\news-blog\View\Frontend\RegisterPage.xaml;;
+FC:\Univer\news-blog\news-blog\View\Frontend\EditArticlePage.xaml;;
 

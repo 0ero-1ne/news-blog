@@ -17,19 +17,34 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Images\back_arrow.png" />
+    <None Remove="Images\edit.png" />
+    <None Remove="Images\heart.png" />
+    <None Remove="Images\heart_black.png" />
     <None Remove="Images\Icon.ico" />
     <None Remove="Images\Icon.png" />
+    <None Remove="Images\image.png" />
+    <None Remove="Images\logout.png" />
+    <None Remove="Images\profile.png" />
+    <None Remove="Images\profile1.png" />
     <None Remove="Images\rating.png" />
+    <None Remove="Images\remove.png" />
     <None Remove="Images\search-icon.png" />
     <None Remove="Images\star.png" />
     <None Remove="Images\start_black.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\back_arrow.png" />
+    <Resource Include="Images\edit.png" />
+    <Resource Include="Images\heart.png" />
+    <Resource Include="Images\heart_black.png" />
     <Resource Include="Images\Icon.png" />
+    <Resource Include="Images\image.png" />
+    <Resource Include="Images\logout.png" />
+    <Resource Include="Images\profile.png" />
+    <Resource Include="Images\remove.png" />
     <Resource Include="Images\search-icon.png" />
-    <Resource Include="Images\star.png" />
-    <Resource Include="Images\start_black.png" />
   </ItemGroup>
 
   <ItemGroup>

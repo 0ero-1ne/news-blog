@@ -108,3 +108,9 @@ C:\Univer\news-blog\news-blog\obj\Debug\net7.0-windows\View\Frontend\ArticlePage
 C:\Univer\news-blog\news-blog\obj\Debug\net7.0-windows\View\Frontend\ArticlePage.baml
 C:\Univer\news-blog\news-blog\obj\Debug\net7.0-windows\View\Frontend\FeedbackPage.g.cs
 C:\Univer\news-blog\news-blog\obj\Debug\net7.0-windows\View\Frontend\FeedbackPage.baml
+C:\Univer\news-blog\news-blog\obj\Debug\net7.0-windows\View\Frontend\ProfilePage.g.cs
+C:\Univer\news-blog\news-blog\obj\Debug\net7.0-windows\View\Frontend\ProfilePage.baml
+C:\Univer\news-blog\news-blog\obj\Debug\net7.0-windows\View\Frontend\CreateArticlePage.g.cs
+C:\Univer\news-blog\news-blog\obj\Debug\net7.0-windows\View\Frontend\CreateArticlePage.baml
+C:\Univer\news-blog\news-blog\obj\Debug\net7.0-windows\View\Frontend\EditArticlePage.g.cs
+C:\Univer\news-blog\news-blog\obj\Debug\net7.0-windows\View\Frontend\EditArticlePage.baml
