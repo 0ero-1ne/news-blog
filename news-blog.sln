@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "news-blog", "news-blog\news-blog.csproj", "{EDD9E464-A631-4910-86A9-D075A220C517}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "news-blog", "news-blog\news-blog.csproj", "{EDD9E464-A631-4910-86A9-D075A220C517}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{7066140C-7377-4046-B81D-4D7A80579890}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,8 @@ Global
 		{EDD9E464-A631-4910-86A9-D075A220C517}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EDD9E464-A631-4910-86A9-D075A220C517}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EDD9E464-A631-4910-86A9-D075A220C517}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7066140C-7377-4046-B81D-4D7A80579890}.Debug|Any CPU.ActiveCfg = Debug
+		{7066140C-7377-4046-B81D-4D7A80579890}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

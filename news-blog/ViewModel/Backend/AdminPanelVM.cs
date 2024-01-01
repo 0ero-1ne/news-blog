@@ -15,7 +15,6 @@ namespace news_blog.ViewModel.Backend
 {
     public class AdminPanelVM : ViewModelBase
     {
-        private string? _adminUsername;
         private List<Article> _articles = DataWorker.GetArticles();
         public List<Article> Articles
         {

@@ -2,16 +2,10 @@
 using news_blog.Context;
 using news_blog.Stores;
 using news_blog.ViewModel.Frontend;
-using news_blog.Model;
-using System.Globalization;
 using System.Windows;
-using System.Linq;
 
 namespace news_blog
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : Application
     {
         private readonly NavigationStore _navigationStore;
